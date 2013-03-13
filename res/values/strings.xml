@@ -48,6 +48,8 @@
     <string name="activity_modify_task_TextView_completion_status_String_title">Completion Status</string>
     <string name="activity_modify_task_Spinner_completion_status_Item_yes_String_title">Completed</string>
     <string name="activity_modify_task_Spinner_completion_status_Item_no_String_title">Not completed yet</string>
+    <string name="activity_modify_task_Menu_actionbar_Item_save_String_title">Save</string>
+    <string name="activity_modify_task_Menu_actionbar_Item_cancel_String_title">Cancel</string>
 
     <string-array name="sample_groups">
         <item>Group 1</item>

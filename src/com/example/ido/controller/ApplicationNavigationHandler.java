@@ -1,4 +1,9 @@
-package com.example.ido;
+package com.example.ido.controller;
+
+import com.example.ido.view.ModifyGroupActivity;
+import com.example.ido.view.ModifyTaskActivity;
+import com.example.ido.view.ViewAllGroupsActivity;
+import com.example.ido.view.ViewAllTasksActivity;
 
 import android.app.Activity;
 import android.content.Intent;

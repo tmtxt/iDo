@@ -1,4 +1,10 @@
-package com.example.ido;
+package com.example.ido.view;
+
+import com.example.ido.R;
+import com.example.ido.R.id;
+import com.example.ido.R.layout;
+import com.example.ido.R.menu;
+import com.example.ido.controller.ApplicationNavigationHandler;
 
 import android.os.Bundle;
 import android.app.ActionBar;

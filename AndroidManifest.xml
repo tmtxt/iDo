@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme"
         android:uiOptions="splitActionBarWhenNarrow" >
         <activity
-            android:name="com.example.ido.MainActivity"
+            android:name="com.example.ido.view.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,23 +24,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.ido.ViewAllGroupsActivity"
+            android:name="com.example.ido.view.ViewAllGroupsActivity"
             android:label="@string/activity_view_all_groups_String_title" >
         </activity>
         <activity
-            android:name="com.example.ido.ViewAllTasksActivity"
+            android:name="com.example.ido.view.ViewAllTasksActivity"
             android:label="@string/activity_view_all_tasks_String_title" >
         </activity>
         <activity
-            android:name="com.example.ido.ModifyGroupActivity"
+            android:name="com.example.ido.view.ModifyGroupActivity"
             android:label="@string/activity_modify_group_String_title" >
         </activity>
         <activity
-            android:name="com.example.ido.ViewTaskDetailActivity"
+            android:name="com.example.ido.view.ViewTaskDetailActivity"
             android:label="@string/activity_view_task_detail_String_title" >
         </activity>
         <activity
-            android:name="com.example.ido.ModifyTaskActivity"
+            android:name="com.example.ido.view.ModifyTaskActivity"
             android:label="@string/activity_modify_task_String_title" >
         </activity>
     </application>

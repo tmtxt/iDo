@@ -1,4 +1,8 @@
-package com.example.ido;
+package com.example.ido.view;
+
+import com.example.ido.R;
+import com.example.ido.R.layout;
+import com.example.ido.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;

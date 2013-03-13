@@ -5,5 +5,16 @@
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/action_settings"/>
-
+    
+    <item 
+        android:id="@+id/activity_modify_task_Menu_actionbar_Item_save"
+        android:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_save"
+        android:title="@string/activity_modify_task_Menu_actionbar_Item_save_String_title" />
+    
+    <item 
+        android:id="@+id/activity_modify_task_Menu_actionbar_Item_cancel"
+        android:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_close_clear_cancel"
+        android:title="@string/activity_modify_task_Menu_actionbar_Item_cancel_String_title" />
 </menu>

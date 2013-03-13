@@ -1,4 +1,4 @@
-package com.example.ido;
+package com.example.ido.view;
 
 import android.app.ActionBar;
 import android.app.Activity;
