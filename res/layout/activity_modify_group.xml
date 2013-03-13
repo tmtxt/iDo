@@ -21,7 +21,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="text" >
+        android:inputType="text"
+        android:hint="@string/activity_modify_group_Edittext_group_title_String_hint" >
         <requestFocus />
     </EditText>
 

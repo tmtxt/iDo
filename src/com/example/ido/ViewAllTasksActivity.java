@@ -1,6 +1,7 @@
 package com.example.ido;
 
 import android.os.Bundle;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,8 +12,17 @@ public class ViewAllTasksActivity extends GeneralActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_all_tasks);
-		
-		
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()){
+		case R.id.activity_view_all_tasks_Menu_actionbar_Item_add_task:
+			ApplicationNavigationHandler.addNewTask(this);
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
 
 	@Override

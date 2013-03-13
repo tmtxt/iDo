@@ -9,6 +9,15 @@
         <item>@string/activity_main_Listview_main_option_Item_show_all_groups_String_title</item>
         <item>@string/activity_main_Listview_main_option_Item_show_all_tasks_String_title</item>
     </string-array>
+    <string-array name="activity_modify_task_Spinner_priority_level_Stringarray_values">
+        <item>@string/activity_modify_task_Spinner_priority_level_Item_high_String_title</item>
+        <item>@string/activity_modify_task_Spinner_priority_level_Item_medium_String_title</item>
+        <item>@string/activity_modify_task_Spinner_priority_level_Item_low_String_title</item>
+    </string-array>
+    <string-array name="activity_modify_task_Spinner_completion_status_Stringarray_values">
+        <item>@string/activity_modify_task_Spinner_completion_status_Item_yes_String_title</item>
+        <item>@string/activity_modify_task_Spinner_completion_status_Item_no_String_title</item>
+    </string-array>
 
     <string name="activity_main_Listview_main_option_Item_show_all_groups_String_title">Show All Task Groups</string>
     <string name="activity_main_Listview_main_option_Item_show_all_tasks_String_title">Show All Tasks</string>
@@ -22,8 +31,23 @@
     <string name="activity_modify_group_Textview_group_title_String_title">Group Title</string>
     <string name="activity_modify_group_Menu_actionbar_Item_save_String_title">Save</string>
     <string name="activity_modify_group_Menu_actionbar_Item_cancel_String_title">Cancel</string>
+    <string name="activity_modify_group_Edittext_group_title_String_hint">Enter group title</string>
     <string name="activity_view_task_detail_String_title">Task Detail</string>
     <string name="activity_modify_task_String_title">Task</string>
+    <string name="activity_modify_task_TextView_task_title_String_title">Task title</string>
+    <string name="activity_modify_task_EditText_task_title_String_hint">Enter Task Title</string>
+    <string name="activity_modify_task_TextView_due_date_String_title">Due date</string>
+    <string name="activity_modify_task_TextView_note_String_title">Task Note</string>
+    <string name="activity_modify_task_EditText_note_String_hint">Enter Task Note</string>
+    <string name="activity_modify_task_Textview_priority_level_String_title">Priority Level</string>
+    <string name="activity_modify_task_Spinner_priority_level_Item_high_String_title">High</string>
+    <string name="activity_modify_task_Spinner_priority_level_Item_medium_String_title">Medium</string>
+    <string name="activity_modify_task_Spinner_priority_level_Item_low_String_title">Low</string>
+    <string name="activity_modify_task_TextView_collaborators_String_title">Collaborators</string>
+    <string name="activity_modify_task_TextView_group_String_title">Group</string>
+    <string name="activity_modify_task_TextView_completion_status_String_title">Completion Status</string>
+    <string name="activity_modify_task_Spinner_completion_status_Item_yes_String_title">Completed</string>
+    <string name="activity_modify_task_Spinner_completion_status_Item_no_String_title">Not completed yet</string>
 
     <string-array name="sample_groups">
         <item>Group 1</item>
