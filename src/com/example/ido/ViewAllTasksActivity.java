@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
-public class ViewAllTasksActivity extends Activity {
+public class ViewAllTasksActivity extends GeneralActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

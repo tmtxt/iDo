@@ -1,6 +1,7 @@
 package com.example.ido;
 
 import android.os.Bundle;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
@@ -18,6 +19,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		// set action listener for mainListView
 		mainListView = (ListView) findViewById(R.id.activity_main_options_listview);
 		mainListView.setOnItemClickListener(new OnItemClickListener() {
 
