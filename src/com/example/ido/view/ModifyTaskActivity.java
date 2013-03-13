@@ -46,7 +46,7 @@ public class ModifyTaskActivity extends GeneralActivity {
 		}
 	}
 
-	// Create and return the confirm dialog when user click Cancel button
+	// Create and return the confirmation dialog when user cancels
 	private Dialog getConfirmCancelDialog(){
 		Dialog confirmCancelDialog;
 		confirmCancelDialog = new AlertDialog.Builder(ModifyTaskActivity.this)
@@ -65,6 +65,7 @@ public class ModifyTaskActivity extends GeneralActivity {
 
 		@Override
 		public void onClick(DialogInterface dialog, int which) {
+			// If user selects yes, finish the current activity and return to the last activity in the back stack
 			finish();
 		}
 		
@@ -75,6 +76,7 @@ public class ModifyTaskActivity extends GeneralActivity {
 
 		@Override
 		public void onClick(DialogInterface dialog, int which) {
+			// If user selects no, simply just close this dialog
 			dialog.dismiss();
 		}
 		
