@@ -9,7 +9,6 @@
         <item>@string/activity_main_options_list_show_all_groups</item>
         <item>@string/activity_main_options_list_show_all_tasks</item>
     </string-array>
-    
     <string-array name="sample_groups">
         <item>Group 1</item>
         <item>Group 2</item>
@@ -24,5 +23,6 @@
     <string name="title_activity_view_all_tasks">All Tasks</string>
     <string name="activity_view_all_groups_menu_add">Add</string>
     <string name="activity_view_all_groups_menu_edit">Manage</string>
+    <string name="title_activity_add_new_group">AddNewGroupActivity</string>
 
 </resources>
