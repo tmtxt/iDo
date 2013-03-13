@@ -22,6 +22,7 @@
     <string name="activity_modify_group_Textview_group_title_String_title">Group Title</string>
     <string name="activity_modify_group_Menu_actionbar_Item_save_String_title">Save</string>
     <string name="activity_modify_group_Menu_actionbar_Item_cancel_String_title">Cancel</string>
+    <string name="activity_view_task_detail_String_title">Task Detail</string>
 
     <string-array name="sample_groups">
         <item>Group 1</item>
