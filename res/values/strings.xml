@@ -45,7 +45,7 @@
     <string name="activity_modify_task_Spinner_priority_level_Item_low_String_title">Low</string>
     <string name="activity_modify_task_TextView_collaborators_String_title">Collaborators</string>
     <string name="activity_modify_task_TextView_group_String_title">Group</string>
-    <string name="activity_modify_task_TextView_completion_status_String_title">Completion Status</string>
+    <string name="activity_modify_task_TextView_completion_status_String_title">Status</string>
     <string name="activity_modify_task_Spinner_completion_status_Item_yes_String_title">Completed</string>
     <string name="activity_modify_task_Spinner_completion_status_Item_no_String_title">Not completed yet</string>
     <string name="activity_modify_task_Menu_actionbar_Item_save_String_title">Save</string>
@@ -64,6 +64,12 @@
         <item>Task 3</item>
         <item>Task 4</item>
         <item>Task 5</item>
+    </string-array>
+    <string-array name="sample_collaborators">
+        <item>tommy1@gmail.com</item>
+        <item>truong@gmail.com</item>
+        <item>mr.truong.tx@facebook.com</item>
+        <item>s3393320@rmit.edu.vn</item>
     </string-array>
 
 </resources>

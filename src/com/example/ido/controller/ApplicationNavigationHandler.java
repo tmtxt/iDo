@@ -4,6 +4,7 @@ import com.example.ido.view.ModifyGroupActivity;
 import com.example.ido.view.ModifyTaskActivity;
 import com.example.ido.view.ViewAllGroupsActivity;
 import com.example.ido.view.ViewAllTasksActivity;
+import com.example.ido.view.ViewTaskDetailActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -19,6 +20,12 @@ public class ApplicationNavigationHandler {
 	public static void showAllGroups(Activity sourceActivity){
 		Intent showAllGroupsIntent = new Intent(sourceActivity, ViewAllGroupsActivity.class);
 		sourceActivity.startActivity(showAllGroupsIntent);
+	}
+	
+	// Go to ViewTaskDetailActivity
+	public static void viewTaskDetail(Activity sourceActivity){
+		Intent viewTaskDetailIntent = new Intent(sourceActivity, ViewTaskDetailActivity.class);
+		sourceActivity.startActivity(viewTaskDetailIntent);
 	}
 	
 	// Go to ViewAllTasksActivity
