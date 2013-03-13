@@ -30,7 +30,7 @@
     <string name="title_activity_view_all_tasks">All Tasks</string>
     <string name="activity_view_all_groups_menu_add">Add</string>
     <string name="activity_view_all_groups_menu_edit">Manage</string>
-    <string name="title_activity_add_new_group">AddNewGroupActivity</string>
-    <string name="title_activity_modify_group">ModifyGroupActivity</string>
+    <string name="title_activity_modify_group">Group</string>
+    <string name="activity_modify_group_textview_group_title">Group Title</string>
 
 </resources>

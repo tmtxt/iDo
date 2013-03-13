@@ -22,8 +22,9 @@ public class ApplicationNavigationHandler {
 		sourceActivity.startActivity(showAllTasksIntent);
 	}
 	
-	// Go to AddNewGroupActivity
+	// Go to ModifyGroupActivity
 	public static void addNewGroup(Activity sourceActivity){
-		
+		Intent addNewGroupIntent = new Intent(sourceActivity, ModifyGroupActivity.class);
+		sourceActivity.startActivity(addNewGroupIntent);
 	}
 }
