@@ -13,6 +13,6 @@
     <string name="title_activity_view_all_groups">All Groups</string>
     <string name="activity_main_options_list_show_all_groups">Show All Task Groups</string>
     <string name="activity_main_options_list_show_all_tasks">Show All Tasks</string>
-    
+    <string name="title_activity_view_all_tasks">All Tasks</string>
 
 </resources>

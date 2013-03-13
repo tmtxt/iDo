@@ -27,6 +27,10 @@
             android:name="com.example.ido.ViewAllGroupsActivity"
             android:label="@string/title_activity_view_all_groups" >
         </activity>
+        <activity
+            android:name="com.example.ido.ViewAllTasksActivity"
+            android:label="@string/title_activity_view_all_tasks" >
+        </activity>
     </application>
 
 </manifest>
