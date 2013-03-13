@@ -13,11 +13,11 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/activity_modify_group_textview_group_title"
+        android:text="@string/activity_modify_group_Textview_group_title_String_title"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
-        android:id="@+id/activity_modify_group_edittext_group_title"
+        android:id="@+id/activity_modify_group_Edittext_group_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:ems="10"

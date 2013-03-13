@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		// set action listener for mainListView
-		mainListView = (ListView) findViewById(R.id.activity_main_options_listview);
+		mainListView = (ListView) findViewById(R.id.activity_main_Listview_main_option);
 		mainListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -39,10 +39,10 @@ public class MainActivity extends Activity {
 		String selectedItem = (String) mainListView.getItemAtPosition(selectedItemId);
 		
 		// check which one the user want to navigate to
-		if(selectedItem.equals(getString(R.string.activity_main_options_list_show_all_groups))){
+		if(selectedItem.equals(getString(R.string.activity_main_Listview_main_option_Item_show_all_groups_String_title))){
 			ApplicationNavigationHandler.showAllGroups(this);
 		}
-		if(selectedItem.equals(getString(R.string.activity_main_options_list_show_all_tasks))){
+		if(selectedItem.equals(getString(R.string.activity_main_Listview_main_option_Item_show_all_tasks_String_title))){
 			ApplicationNavigationHandler.showAllTasks(this);
 		}
 	}

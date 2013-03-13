@@ -25,15 +25,15 @@
         </activity>
         <activity
             android:name="com.example.ido.ViewAllGroupsActivity"
-            android:label="@string/title_activity_view_all_groups" >
+            android:label="@string/activity_view_all_groups_String_title" >
         </activity>
         <activity
             android:name="com.example.ido.ViewAllTasksActivity"
-            android:label="@string/title_activity_view_all_tasks" >
+            android:label="@string/activity_view_all_tasks_String_title" >
         </activity>
         <activity
             android:name="com.example.ido.ModifyGroupActivity"
-            android:label="@string/title_activity_modify_group" >
+            android:label="@string/activity_modify_group_String_title" >
         </activity>
     </application>
 

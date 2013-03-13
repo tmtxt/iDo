@@ -10,10 +10,10 @@
     tools:context=".MainActivity" >
 
     <ListView
-        android:id="@+id/activity_main_options_listview"
+        android:id="@+id/activity_main_Listview_main_option"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:entries="@array/activity_main_options_list">
+        android:entries="@array/activity_main_Listview_main_option_Stringarray_values">
 
     </ListView>
 

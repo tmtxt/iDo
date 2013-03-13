@@ -7,14 +7,14 @@
         android:title="@string/action_settings"/>
 
     <item
-        android:id="@+id/view_all_groups_activity_add_group"
+        android:id="@+id/activity_view_all_groups_Menu_actionbar_Item_add_group"
         android:showAsAction="always"
-        android:title="@string/activity_view_all_groups_menu_add"
+        android:title="@string/activity_view_all_groups_Menu_actionbar_Item_add_String_title"
         android:icon="@android:drawable/ic_menu_add" />
     
     <item
-        android:id="@+id/view_all_groups_activity_manage_group"
+        android:id="@+id/activity_view_all_groups_Menu_actionbar_Item_manage_group"
         android:showAsAction="always"
-        android:title="@string/activity_view_all_groups_menu_edit"
+        android:title="@string/activity_view_all_groups_Menu_actionbar_Item_manage_String_title"
         android:icon="@android:drawable/ic_menu_edit" />
 </menu>

@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
-public class ModifyGroupActivity extends Activity {
+public class ModifyGroupActivity extends GeneralActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

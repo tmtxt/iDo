@@ -10,7 +10,7 @@
     tools:context=".MainActivity" >
 
     <ListView
-        android:id="@+id/activity_view_all_tasks_listview_all_tasks"
+        android:id="@+id/activity_view_all_tasks_Listview_all_tasks"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:entries="@array/sample_tasks" >

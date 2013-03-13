@@ -5,9 +5,9 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
 
-    <string-array name="activity_main_options_list">
-        <item>@string/activity_main_options_list_show_all_groups</item>
-        <item>@string/activity_main_options_list_show_all_tasks</item>
+    <string-array name="activity_main_Listview_main_option_Stringarray_values">
+        <item>@string/activity_main_Listview_main_option_Item_show_all_groups_String_title</item>
+        <item>@string/activity_main_Listview_main_option_Item_show_all_tasks_String_title</item>
     </string-array>
     <string-array name="sample_groups">
         <item>Group 1</item>
@@ -24,13 +24,14 @@
         <item>Task 5</item>
     </string-array>
 
-    <string name="title_activity_view_all_groups">All Groups</string>
-    <string name="activity_main_options_list_show_all_groups">Show All Task Groups</string>
-    <string name="activity_main_options_list_show_all_tasks">Show All Tasks</string>
-    <string name="title_activity_view_all_tasks">All Tasks</string>
-    <string name="activity_view_all_groups_menu_add">Add</string>
-    <string name="activity_view_all_groups_menu_edit">Manage</string>
-    <string name="title_activity_modify_group">Group</string>
-    <string name="activity_modify_group_textview_group_title">Group Title</string>
+    <string name="activity_view_all_groups_String_title">All Groups</string>
+    <string name="activity_main_Listview_main_option_Item_show_all_groups_String_title">Show All Task Groups</string>
+    <string name="activity_main_Listview_main_option_Item_show_all_tasks_String_title">Show All Tasks</string>
+    <string name="activity_view_all_tasks_String_title">All Tasks</string>
+    <string name="activity_view_all_groups_Menu_actionbar_Item_add_String_title">Add</string>
+    <string name="activity_view_all_groups_Menu_actionbar_Item_manage_String_title">Manage</string>
+    <string name="activity_modify_group_String_title">Group</string>
+    <string name="activity_modify_group_Textview_group_title_String_title">Group Title</string>
+    
 
 </resources>

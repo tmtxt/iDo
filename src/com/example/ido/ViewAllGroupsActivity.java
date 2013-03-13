@@ -26,7 +26,7 @@ public class ViewAllGroupsActivity extends GeneralActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()){
-		case R.id.view_all_groups_activity_add_group:
+		case R.id.activity_view_all_groups_Menu_actionbar_Item_add_group:
 			ApplicationNavigationHandler.addNewGroup(this);
 			return true;
 		default:
