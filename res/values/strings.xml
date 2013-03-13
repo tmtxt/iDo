@@ -6,10 +6,13 @@
     <string name="hello_world">Hello world!</string>
 
     <string-array name="activity_main_options_list">
-        <item>View All Task Groups</item>
-        <item>View All Tasks</item>
+        <item>@string/activity_main_options_list_show_all_groups</item>
+        <item>@string/activity_main_options_list_show_all_tasks</item>
     </string-array>
 
-    <string name="title_activity_view_all_groups">ViewAllGroupsActivity</string>
+    <string name="title_activity_view_all_groups">All Groups</string>
+    <string name="activity_main_options_list_show_all_groups">Show All Task Groups</string>
+    <string name="activity_main_options_list_show_all_tasks">Show All Tasks</string>
+    
 
 </resources>
