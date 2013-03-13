@@ -50,6 +50,9 @@
     <string name="activity_modify_task_Spinner_completion_status_Item_no_String_title">Not completed yet</string>
     <string name="activity_modify_task_Menu_actionbar_Item_save_String_title">Save</string>
     <string name="activity_modify_task_Menu_actionbar_Item_cancel_String_title">Cancel</string>
+    <string name="activity_view_task_detail_Menu_actionbar_Item_edit_String_title">Edit Task</string>
+    <string name="activity_view_task_detail_Menu_actionbar_Item_delete_String_title">Delete Task</string>
+    <string name="activity_view_task_detail_Menu_actionbar_Item_add_String_title">Add Task</string>
 
     <string-array name="sample_groups">
         <item>Group 1</item>
@@ -57,8 +60,28 @@
         <item>Group 3</item>
         <item>Group 4</item>
         <item>Group 5</item>
+        <item>Group 1</item>
+        <item>Group 2</item>
+        <item>Group 3</item>
+        <item>Group 4</item>
+        <item>Group 5</item>
+        <item>Group 1</item>
+        <item>Group 2</item>
+        <item>Group 3</item>
+        <item>Group 4</item>
+        <item>Group 5</item>
     </string-array>
     <string-array name="sample_tasks">
+        <item>Taks 1</item>
+        <item>Task 2</item>
+        <item>Task 3</item>
+        <item>Task 4</item>
+        <item>Task 5</item>
+        <item>Taks 1</item>
+        <item>Task 2</item>
+        <item>Task 3</item>
+        <item>Task 4</item>
+        <item>Task 5</item>
         <item>Taks 1</item>
         <item>Task 2</item>
         <item>Task 3</item>

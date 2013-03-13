@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
-public class ViewTaskDetailActivity extends Activity {
+public class ViewTaskDetailActivity extends GeneralActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
