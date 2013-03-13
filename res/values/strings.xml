@@ -50,6 +50,9 @@
     <string name="activity_modify_task_Spinner_completion_status_Item_no_String_title">Not completed yet</string>
     <string name="activity_modify_task_Menu_actionbar_Item_save_String_title">Save</string>
     <string name="activity_modify_task_Menu_actionbar_Item_cancel_String_title">Cancel</string>
+    <string name="activity_modify_task_Dialog_confirm_cancel_Button_positive_String_title">Yes</string>
+    <string name="activity_modify_task_Dialog_confirm_cancel_Button_negative_String_title">No</string>
+    <string name="activity_modify_task_Dialog_confirm_cancel_TextView_label_String_title">Are you sure to cancel?</string>
     <string name="activity_view_task_detail_Menu_actionbar_Item_edit_String_title">Edit Task</string>
     <string name="activity_view_task_detail_Menu_actionbar_Item_delete_String_title">Delete Task</string>
     <string name="activity_view_task_detail_Menu_actionbar_Item_add_String_title">Add Task</string>
