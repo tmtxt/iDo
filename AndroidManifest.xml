@@ -32,8 +32,8 @@
             android:label="@string/title_activity_view_all_tasks" >
         </activity>
         <activity
-            android:name="com.example.ido.AddNewGroupActivity"
-            android:label="@string/title_activity_add_new_group" >
+            android:name="com.example.ido.ModifyGroupActivity"
+            android:label="@string/title_activity_modify_group" >
         </activity>
     </application>
 

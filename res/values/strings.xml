@@ -16,6 +16,13 @@
         <item>Group 4</item>
         <item>Group 5</item>
     </string-array>
+    <string-array name="sample_tasks">
+        <item>Taks 1</item>
+        <item>Task 2</item>
+        <item>Task 3</item>
+        <item>Task 4</item>
+        <item>Task 5</item>
+    </string-array>
 
     <string name="title_activity_view_all_groups">All Groups</string>
     <string name="activity_main_options_list_show_all_groups">Show All Task Groups</string>
@@ -24,5 +31,6 @@
     <string name="activity_view_all_groups_menu_add">Add</string>
     <string name="activity_view_all_groups_menu_edit">Manage</string>
     <string name="title_activity_add_new_group">AddNewGroupActivity</string>
+    <string name="title_activity_modify_group">ModifyGroupActivity</string>
 
 </resources>
