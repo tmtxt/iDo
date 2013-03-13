@@ -9,10 +9,20 @@
         <item>@string/activity_main_options_list_show_all_groups</item>
         <item>@string/activity_main_options_list_show_all_tasks</item>
     </string-array>
+    
+    <string-array name="sample_groups">
+        <item>Group 1</item>
+        <item>Group 2</item>
+        <item>Group 3</item>
+        <item>Group 4</item>
+        <item>Group 5</item>
+    </string-array>
 
     <string name="title_activity_view_all_groups">All Groups</string>
     <string name="activity_main_options_list_show_all_groups">Show All Task Groups</string>
     <string name="activity_main_options_list_show_all_tasks">Show All Tasks</string>
     <string name="title_activity_view_all_tasks">All Tasks</string>
+    <string name="activity_view_all_groups_menu_add">Add</string>
+    <string name="activity_view_all_groups_menu_edit">Manage</string>
 
 </resources>
