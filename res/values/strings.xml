@@ -16,8 +16,12 @@
     <string name="activity_view_all_groups_Menu_actionbar_Item_add_String_title">Add</string>
     <string name="activity_view_all_groups_Menu_actionbar_Item_manage_String_title">Manage</string>
     <string name="activity_view_all_tasks_String_title">All Tasks</string>
+    <string name="activity_view_all_tasks_Menu_actionbar_Item_add_String_title">Add</string>
+    <string name="activity_view_all_tasks_Menu_actionbar_Item_manage_String_title">Manage</string>
     <string name="activity_modify_group_String_title">Group</string>
     <string name="activity_modify_group_Textview_group_title_String_title">Group Title</string>
+    <string name="activity_modify_group_Menu_actionbar_Item_save_String_title">Save</string>
+    <string name="activity_modify_group_Menu_actionbar_Item_cancel_String_title">Cancel</string>
 
     <string-array name="sample_groups">
         <item>Group 1</item>

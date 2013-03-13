@@ -9,5 +9,12 @@
 	<item
 	    android:id="@+id/activity_modify_group_Menu_actionbar_Item_save"
 	    android:showAsAction="always"
-	    android:title="" />
+	    android:title="@string/activity_modify_group_Menu_actionbar_Item_save_String_title"
+	    android:icon="@android:drawable/ic_menu_save" />
+	
+	<item 
+	    android:id="@+id/activity_modify_group_Menu_actionbar_Item_cancel"
+	    android:showAsAction="always"
+	    android:title="@string/activity_modify_group_Menu_actionbar_Item_cancel_String_title"
+	    android:icon="@android:drawable/ic_menu_close_clear_cancel" />
 </menu>
