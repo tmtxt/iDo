@@ -10,11 +10,9 @@
     tools:context=".MainActivity" >
 
     <ListView
-        android:id="@+id/activity_main_options_listview"
+        android:id="@+id/listView1"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:entries="@array/activity_main_options_list">
-
+        android:layout_height="fill_parent" >
     </ListView>
 
 </RelativeLayout>
