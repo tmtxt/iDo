@@ -38,25 +38,13 @@ public class MainActivity extends Activity {
 		
 		// check which one the user want to navigate to
 		if(selectedItem.equals(getString(R.string.activity_main_options_list_show_all_groups))){
-			showAllGroups();
+			ApplicationNavigationHandler.showAllGroups(this);
 		}
 		if(selectedItem.equals(getString(R.string.activity_main_options_list_show_all_tasks))){
-			showAllTasks();
+			ApplicationNavigationHandler.showAllTasks(this);
 		}
 	}
 	
-	// simply just call showAllTasksActivity
-	private void showAllTasks(){
-		Intent showAllTasksIntent = new Intent(this, ViewAllTasksActivity.class);
-		startActivity(showAllTasksIntent);
-	}
-
-	// simply just call showAllGroupsActivity
-	private void showAllGroups(){
-		Intent showAllGroupsIntent = new Intent(this, ViewAllGroupsActivity.class);
-		startActivity(showAllGroupsIntent);
-	}
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
