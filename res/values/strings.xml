@@ -5,4 +5,11 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
 
+    <string-array name="activity_main_options_list">
+        <item>View All Task Groups</item>
+        <item>View All Tasks</item>
+    </string-array>
+
+    <string name="title_activity_view_all_groups">ViewAllGroupsActivity</string>
+
 </resources>
