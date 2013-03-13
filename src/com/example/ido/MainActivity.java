@@ -30,9 +30,13 @@ public class MainActivity extends Activity {
 		});
 	}
 
+	// handler for mainListView item click event
 	private void mainListViewOnItemClickHandler(AdapterView<?> adapterView, View listView, int selectedItemId,
 			long arg4) {
+		//get selected item
 		String selectedItem = (String) mainListView.getItemAtPosition(selectedItemId);
+		
+		// check which one the user want to navigate to
 		if(selectedItem.equals(getString(R.string.activity_main_options_list_show_all_groups))){
 			showAllGroups();
 		}
@@ -41,11 +45,13 @@ public class MainActivity extends Activity {
 		}
 	}
 	
+	// simply just call showAllTasksActivity
 	private void showAllTasks(){
 		Intent showAllTasksIntent = new Intent(this, ViewAllTasksActivity.class);
 		startActivity(showAllTasksIntent);
 	}
 
+	// simply just call showAllGroupsActivity
 	private void showAllGroups(){
 		Intent showAllGroupsIntent = new Intent(this, ViewAllGroupsActivity.class);
 		startActivity(showAllGroupsIntent);
