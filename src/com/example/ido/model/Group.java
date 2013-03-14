@@ -1,11 +1,15 @@
 package com.example.ido.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 // A Model Class to reflect a Group
-public class Group {
+public class Group implements Serializable {
 	
 	// USER DEFINED STUFFS
+	
+	// A static variable to use when put it into bundle
+	public static final String GROUP_BUNDLE_KEY = "group_bundle_key";  
 	
 	// The ID of this group, which is a randomly generated combination of numbers and letters
 	private String id;
@@ -18,6 +22,10 @@ public class Group {
 	
 	
 	// COMPUTER GENERATED STUFFS
+	
+	public Group(){
+		
+	}
 
 	public Group(String id, String title, List<Task> tasksList) {
 		super();
@@ -30,7 +38,7 @@ public class Group {
 		return id;
 	}
 
-	private void setId(String id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
