@@ -14,17 +14,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class ModifyTaskActivity extends GeneralActivity {
-	
+
 	private static final int DIALOG_CANCEL_ID = 1;
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()){
+		
 		// When user select Cancel or Home button, show a confirmation dialog
 		case R.id.activity_modify_task_Menu_actionbar_Item_cancel:
 		case android.R.id.home:
-			showDialog(DIALOG_CANCEL_ID);
+			// Show the confirmation dialog
+			// The rest (leave activity or not), the function ApplicationDialogHandler.showConfirmCancelDialog() will handle
+			ApplicationDialogHandler.showConfirmCancelDialog(this);
 			return true;
+			
+		// default case, return the base class function
 		default:
 			return super.onOptionsItemSelected(item);
 		}
@@ -32,55 +37,11 @@ public class ModifyTaskActivity extends GeneralActivity {
 
 	@Override
 	public void onBackPressed() {
-		// When user press Back key, show a confirmation dialog
-		showDialog(DIALOG_CANCEL_ID);
+		// Show the confirmation dialog
+		// The rest (leave activity or not), the function ApplicationDialogHandler.showConfirmCancelDialog() will handle
+		ApplicationDialogHandler.showConfirmCancelDialog(this);
 	}
 
-	@Override
-	protected Dialog onCreateDialog(int id) {
-		switch (id){
-		case DIALOG_CANCEL_ID:
-			return getConfirmCancelDialog();
-		default:
-			return null;
-		}
-	}
-
-	// Create and return the confirmation dialog when user cancels
-	private Dialog getConfirmCancelDialog(){
-		Dialog confirmCancelDialog;
-		confirmCancelDialog = new AlertDialog.Builder(ModifyTaskActivity.this)
-			.setIcon(android.R.drawable.ic_menu_help)
-			.setTitle(R.string.activity_modify_task_Dialog_confirm_cancel_TextView_label_String_title)
-			.setPositiveButton(R.string.activity_modify_task_Dialog_confirm_cancel_Button_positive_String_title,
-					new ConfirmCancelDialogPositiveButtonListener())
-			.setNegativeButton(R.string.activity_modify_task_Dialog_confirm_cancel_Button_negative_String_title,
-					new ConfirmCancelDialogNegativeButtonListener())
-			.create();
-		return confirmCancelDialog;
-	}
-	
-	// An inner class to handle event when user select Yes button on Confirm Cancel dialog
-	private class ConfirmCancelDialogPositiveButtonListener implements OnClickListener{
-
-		@Override
-		public void onClick(DialogInterface dialog, int which) {
-			// If user selects yes, finish the current activity and return to the last activity in the back stack
-			finish();
-		}
-		
-	}
-	
-	// An inner class to handle event when user select No button on Confirm Cancel dialog
-	private class ConfirmCancelDialogNegativeButtonListener implements OnClickListener{
-
-		@Override
-		public void onClick(DialogInterface dialog, int which) {
-			// If user selects no, simply just close this dialog
-			dialog.dismiss();
-		}
-		
-	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
