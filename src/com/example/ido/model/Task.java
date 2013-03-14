@@ -1,10 +1,11 @@
 package com.example.ido.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 // A Model Class to reflect a Task
-public class Task {
+public class Task implements Serializable {
 	
 	// USER DEFINED STUFFS
 	
