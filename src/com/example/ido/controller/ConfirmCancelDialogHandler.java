@@ -1,4 +1,4 @@
-package com.example.ido.view;
+package com.example.ido.controller;
 
 import com.example.ido.R;
 
@@ -8,12 +8,12 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 
-// This is a class to handle all Dialogs in application
+// This is a class to handle all Cancel Confirmation Dialogs in application
 // This class is for reusable purpose
 // Another reason is that the showDialog() method of Activity class is deprecated and I don't want to use it
-public class ApplicationDialogHandler {
+public class ConfirmCancelDialogHandler {
 	
-	// STATIC FUNCTIONS USED FOR ACTIVATING DIALOG WITHIN THE APPLICATION
+	// STATIC FUNCTION USED FOR ACTIVATING DIALOG WITHIN THE APPLICATION
 	
 	// Static function used for show a Confirmation dialog when user select Back key, Cancel button,...
 	// Can be used for those activities that take the input from user for confirmation when user has not saved the data yet.

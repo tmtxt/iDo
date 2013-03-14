@@ -3,6 +3,7 @@ package com.example.ido.view;
 import com.example.ido.R;
 import com.example.ido.R.layout;
 import com.example.ido.R.menu;
+import com.example.ido.controller.ConfirmCancelDialogHandler;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -21,7 +22,7 @@ public class ModifyGroupActivity extends GeneralActivity {
 	public void onBackPressed() {
 		// Show the confirmation dialog
 		// The rest (leave activity or not), the function ApplicationDialogHandler.showConfirmCancelDialog() will handle
-		ApplicationDialogHandler.showConfirmCancelDialog(this);
+		ConfirmCancelDialogHandler.showConfirmCancelDialog(this);
 	}
 
 	@Override
@@ -33,7 +34,7 @@ public class ModifyGroupActivity extends GeneralActivity {
 		case android.R.id.home:
 			// Show the confirmation dialog
 			// The rest (leave activity or not), the function ApplicationDialogHandler.showConfirmCancelDialog() will handle
-			ApplicationDialogHandler.showConfirmCancelDialog(this);
+			ConfirmCancelDialogHandler.showConfirmCancelDialog(this);
 			return true;
 
 		// default case, return the base class function
