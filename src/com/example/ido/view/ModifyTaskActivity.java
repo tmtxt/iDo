@@ -15,8 +15,6 @@ import android.view.MenuItem;
 
 public class ModifyTaskActivity extends GeneralActivity {
 
-	private static final int DIALOG_CANCEL_ID = 1;
-
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()){

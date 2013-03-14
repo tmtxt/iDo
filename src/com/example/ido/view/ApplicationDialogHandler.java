@@ -8,7 +8,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 
-// This is a class to handle all Dialog in application
+// This is a class to handle all Dialogs in application
 // This class is for reusable purpose
 // Another reason is that the showDialog() method of Activity class is deprecated and I don't want to use it
 public class ApplicationDialogHandler {

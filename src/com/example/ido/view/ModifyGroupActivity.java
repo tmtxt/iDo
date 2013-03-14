@@ -7,6 +7,7 @@ import com.example.ido.R.menu;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.view.MenuItem;
 
 public class ModifyGroupActivity extends GeneralActivity {
 
@@ -14,6 +15,31 @@ public class ModifyGroupActivity extends GeneralActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_modify_group);
+	}
+
+	@Override
+	public void onBackPressed() {
+		// Show the confirmation dialog
+		// The rest (leave activity or not), the function ApplicationDialogHandler.showConfirmCancelDialog() will handle
+		ApplicationDialogHandler.showConfirmCancelDialog(this);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()){
+
+		// When user select Cancel or Home button, show a confirmation dialog
+		case R.id.activity_modify_group_Menu_actionbar_Item_cancel:
+		case android.R.id.home:
+			// Show the confirmation dialog
+			// The rest (leave activity or not), the function ApplicationDialogHandler.showConfirmCancelDialog() will handle
+			ApplicationDialogHandler.showConfirmCancelDialog(this);
+			return true;
+
+		// default case, return the base class function
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
 
 	@Override
