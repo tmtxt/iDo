@@ -1,6 +1,11 @@
 package com.example.ido.controller;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import com.example.ido.model.Group;
+import com.example.ido.model.Task;
 import com.example.ido.view.ModifyGroupActivity;
 import com.example.ido.view.ModifyTaskActivity;
 import com.example.ido.view.ViewAllGroupsActivity;
@@ -10,6 +15,7 @@ import com.example.ido.view.ViewTaskDetailActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract.CommonDataKinds.Note;
 
 // A class consists of static functions that help the application navigation between activity
 // The idea of the class is that many events can call to the same activity,
@@ -52,6 +58,28 @@ public class ApplicationNavigationHandler {
 		editExistingGroupIntent.putExtras(editExistingGroupBundle);
 		// start the activity
 		sourceActivity.startActivity(editExistingGroupIntent);
+	}
+	
+	// Go to ModifyTaskActivity to edit and existing Task
+	public static void editExistingTask(Activity sourceActivity, Task existingTask){
+		// create a skeleton
+		Date date = new Date();
+		List<String> collaborators = new ArrayList<String>();
+		collaborators.add("truong.tx@facebook.com");
+		collaborators.add("tommy.txtruong@gmail.com");
+		collaborators.add("s3393320@rmit.edu.vn");
+		Group group = new Group("groupID", "To do this week", null);
+		Task task = new Task("taskID", "Go shopping", date, "This is something I need to do in this week", Task.HIGH_PRIORITY, collaborators, group, Task.TASK_COMPLETED);
+		
+		Intent editExistingTaskIntent = new Intent(sourceActivity, ModifyTaskActivity.class);
+		// put the task to edit into the bundle
+		Bundle editExistingTaskBundle = new Bundle();
+		// editExistingTaskBundle.putSerializable(Task.TASK_BUNDLE_KEY, existingTask);
+		editExistingTaskBundle.putSerializable(Task.TASK_BUNDLE_KEY, task);
+		// put the bundle into intent
+		editExistingTaskIntent.putExtras(editExistingTaskBundle);
+		// start the activity
+		sourceActivity.startActivity(editExistingTaskIntent);
 	}
 	
 	// Go to ModifyTaskActivity

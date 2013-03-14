@@ -31,6 +31,9 @@ public class ViewTaskDetailActivity extends GeneralActivity {
 		case R.id.activity_view_task_detail_Menu_actionbar_Item_add:
 			ApplicationNavigationHandler.addNewTask(this);
 			return true;
+		case R.id.activity_view_task_detail_Menu_actionbar_Item_edit:
+			ApplicationNavigationHandler.editExistingTask(this, null);
+			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}

@@ -10,13 +10,16 @@ public class Task implements Serializable {
 	// USER DEFINED STUFFS
 	
 	// Static variables to indicate priority level of the task
-	public static final int HIGH_PRIORITY = 3;
-	public static final int MEDIUM_PRIORITY = 2;
-	public static final int LOW_PRIORITY = 1;
+	public static final int HIGH_PRIORITY = 0;
+	public static final int MEDIUM_PRIORITY = 1;
+	public static final int LOW_PRIORITY = 2;
 	
 	// Static variables to indicate completion status
 	public static final boolean TASK_COMPLETED = true;
 	public static final boolean TASK_NOT_COMPLETED = false;
+	
+	// A static variable to use when put it into bundle
+	public static final String TASK_BUNDLE_KEY = "task_bundle_key";  
 	
 	// The ID of this task, which is a randomly generated combination of numbers and letters
 	private String id;

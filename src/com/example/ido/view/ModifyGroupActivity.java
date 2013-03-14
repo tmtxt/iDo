@@ -20,7 +20,7 @@ public class ModifyGroupActivity extends GeneralActivity {
 
 	// a Group object to hold the data about the current group being processed
 	// If the activity is creating a new group, this object will be null
-	// Otherwise, it will be retrive from the bundle
+	// Otherwise, it will be retrieved from the bundle
 	private Group group = null;
 	
 	@Override
