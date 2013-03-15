@@ -8,6 +8,7 @@ import com.example.ido.model.Group;
 import com.example.ido.model.Task;
 import com.example.ido.view.ModifyGroupActivity;
 import com.example.ido.view.ModifyTaskActivity;
+import com.example.ido.view.SettingActivity;
 import com.example.ido.view.ViewAllGroupsActivity;
 import com.example.ido.view.ViewAllTasksActivity;
 import com.example.ido.view.ViewTaskDetailActivity;
@@ -40,6 +41,12 @@ public class ApplicationNavigationHandler {
 	public static void showAllTasks(Activity sourceActivity){
 		Intent showAllTasksIntent = new Intent(sourceActivity, ViewAllTasksActivity.class);
 		sourceActivity.startActivity(showAllTasksIntent);
+	}
+	
+	// Go to SettingActivity
+	public static void showSetting(Activity sourceActivity){
+		Intent showSettingIntent = new Intent(sourceActivity, SettingActivity.class);
+		sourceActivity.startActivity(showSettingIntent);
 	}
 	
 	// Go to ModifyGroupActivity to add a new group

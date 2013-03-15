@@ -43,6 +43,10 @@
             android:name="com.example.ido.view.ModifyTaskActivity"
             android:label="@string/activity_modify_task_String_title" >
         </activity>
+        <activity
+            android:name="com.example.ido.view.SettingActivity"
+            android:label="@string/title_activity_setting" >
+        </activity>
     </application>
 
 </manifest>

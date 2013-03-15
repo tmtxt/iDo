@@ -56,6 +56,7 @@
     <string name="activity_view_task_detail_Menu_actionbar_Item_edit_String_title">Edit Task</string>
     <string name="activity_view_task_detail_Menu_actionbar_Item_delete_String_title">Delete Task</string>
     <string name="activity_view_task_detail_Menu_actionbar_Item_add_String_title">Add Task</string>
+    <string name="activity_setting_TextView_notification_String_title">Notification</string>
 
     <string-array name="sample_groups">
         <item>Group 1</item>
@@ -97,5 +98,7 @@
         <item>mr.truong.tx@facebook.com</item>
         <item>s3393320@rmit.edu.vn</item>
     </string-array>
+
+    <string name="title_activity_setting">SettingActivity</string>
 
 </resources>

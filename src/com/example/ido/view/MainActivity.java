@@ -12,12 +12,24 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 public class MainActivity extends Activity {
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()){
+		case R.id.action_settings:
+			// click on setting button wil navigate to SettingActivity
+			ApplicationNavigationHandler.showSetting(this);
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
 
 	private ListView mainListView;
 
