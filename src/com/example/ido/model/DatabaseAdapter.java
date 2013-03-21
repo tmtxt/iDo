@@ -1,6 +1,8 @@
 package com.example.ido.model;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -51,15 +53,18 @@ public class DatabaseAdapter {
 
 		@Override
 		public void onCreate(SQLiteDatabase db) {
-			// TODO Auto-generated method stub
+			// Create the Group table 
 			db.execSQL(DatabaseAdapter.GROUP_TABLE_CREATE);
-			Log.i(TAG, "table created");
+			// Create the Task table
+			
 		}
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-			// TODO Auto-generated method stub
-			db.execSQL("Drop table if exists task_group");
+			// Drop Task table if exists
+			
+			// Drop Group table if exists
+			db.execSQL("Drop table if exists " + GROUP_TABLE_NAME);
 		}
 		
 	}
@@ -84,6 +89,18 @@ public class DatabaseAdapter {
 		databaseHelper.close();
 	}
 	
+	// Return all groups currently in database
+	public Cursor getAllGroups(){
+		return sqLiteDatabase.query(GROUP_TABLE_NAME,
+				new String[] {GROUP_TABLE_COLUMN_ID, GROUP_TABLE_COULMN_TITLE}, null, null, null, null, null);
+	}
 	
+	// Insert a new group into Group table
+	public long insertGroup(String groupID, String groupTitle){
+		ContentValues initialValues = new ContentValues();
+		initialValues.put(GROUP_TABLE_COLUMN_ID, groupID);
+		initialValues.put(GROUP_TABLE_COULMN_TITLE, groupTitle);
+		return sqLiteDatabase.insert(GROUP_TABLE_NAME, null, initialValues);
+	}
 	
 }
