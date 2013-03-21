@@ -39,6 +39,8 @@ import android.widget.TextView;
 // Otherwise, the activity is going to create a new task
 public class ModifyTaskActivity extends GeneralActivity {
 
+	// VARIABLES DEFINED HERE
+
 	// a Task object to hold the data about the current task being processed
 	// If the activity is creating a new task, this object will be initialized
 	// Otherwise, it will be retrieved from the bundle
@@ -55,6 +57,9 @@ public class ModifyTaskActivity extends GeneralActivity {
 
 	// adapter for Collaborators ListView
 	private ArrayAdapter<String> collaboratorsListViewAdapter;
+
+
+	// OVERIDE FUNCTIONS
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -110,6 +115,42 @@ public class ModifyTaskActivity extends GeneralActivity {
 			// If the Task object not exist, change the title of the activity to "Create new Task"
 		}
 
+		// init the collaborators
+		this.initColaborators();
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+
+		// check if request code is from Select Collaborator Button
+		if(requestCode == ModifyTaskActivity.SELECT_COLLABORATOR_ACTIVITY_RESULT_CODE){
+			// Now get the email address of the contact and then update the list view
+			if(data != null){
+				// get the email address
+				String collaboratorEmailAddress = getCollaboratorEmailAddress(data);
+				// update the listview
+				this.task.getCollaborators().add(collaboratorEmailAddress);
+				this.collaboratorsListViewAdapter.notifyDataSetChanged();
+			}
+		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.modify_task, menu);
+		return true;
+	}
+
+
+	// UTILITY FUNCTIONS
+
+	// This functions is used to init collaborators list from the list adapter, list view...
+	// to action listener for them
+	// need to be called in the onCreate() method
+	private void initColaborators(){
 		// init the Collaborator ListView
 		collaboratorsListViewAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, this.task.getCollaborators());
@@ -122,49 +163,63 @@ public class ModifyTaskActivity extends GeneralActivity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent selectCollaboratorIntent = new Intent(Intent.ACTION_PICK);
-				selectCollaboratorIntent.setType(ContactsContract.CommonDataKinds.Email.CONTENT_TYPE);
-				startActivityForResult(selectCollaboratorIntent,
-						ModifyTaskActivity.SELECT_COLLABORATOR_ACTIVITY_RESULT_CODE);
+				// show the Address book for user to choose colaborators
+				selectCollaboratorEmail();
+			}
+		});
+		
+		// Add action listener for the Clear Collaborators button, empty the collaborator list
+		Button clearCollaboratorsButton = (Button) findViewById(R.id.activity_modify_task_Button_clear_collaborator);
+		clearCollaboratorsButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				clearCollaboratorsList();
 			}
 		});
 	}
+	
+	// This function clears all collaborators
+	private void clearCollaboratorsList(){
+		this.task.getCollaborators().clear();
+		this.collaboratorsListViewAdapter.notifyDataSetChanged();
+	}
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
-		super.onActivityResult(requestCode, resultCode, data);
+	// This function is to show the Address book for user to choose collaborator email
+	private void selectCollaboratorEmail(){
+		Intent selectCollaboratorIntent = new Intent(Intent.ACTION_PICK);
+		selectCollaboratorIntent.setType(ContactsContract.CommonDataKinds.Email.CONTENT_TYPE);
+		startActivityForResult(selectCollaboratorIntent,
+				ModifyTaskActivity.SELECT_COLLABORATOR_ACTIVITY_RESULT_CODE);
+	}
 
-		// check if request code is from Select Collaborator Button
-		if(requestCode == ModifyTaskActivity.SELECT_COLLABORATOR_ACTIVITY_RESULT_CODE){
-			// Now get the email address of the contact
-			// Reference: http://stackoverflow.com/questions/4993063/how-to-call-android-contacts-list-and-select-one-phone-number-from-its-details-s
-			if(data != null){
-				Uri uri = data.getData();
+	// This function is used to get collaborator's email address
+	// After pressing Add Collaborator button, a new activity appears for user to select collaborator
+	// After finishing selecting collaborator, call this function and pass the Intent that activity return
+	// Reference: http://stackoverflow.com/questions/4993063/how-to-call-android-contacts-list-and-select-one-phone-number-from-its-details-s
+	private String getCollaboratorEmailAddress(Intent data){
+		String collaboratorEmailAddress = null;		
+		Uri uri = data.getData();
 
-				if (uri != null) {
-					Cursor c = null;
-					try {
-						c = getContentResolver().query(uri, new String[]{ 
-								ContactsContract.CommonDataKinds.Email.ADDRESS,  
-								ContactsContract.CommonDataKinds.Email.TYPE },
-								null, null, null);
+		if (uri != null) {
+			Cursor c = null;
+			try {
+				c = getContentResolver().query(uri, new String[]{ 
+						ContactsContract.CommonDataKinds.Email.ADDRESS,  
+						ContactsContract.CommonDataKinds.Email.TYPE },
+						null, null, null);
 
-						if (c != null && c.moveToFirst()) {
-							String address = c.getString(0);
-							// update the listview
-							this.task.getCollaborators().add(address);
-							this.collaboratorsListViewAdapter.notifyDataSetChanged();
-						}
-					} finally {
-						if (c != null) {
-							c.close();
-						}
-					}
+				if (c != null && c.moveToFirst()) {
+					collaboratorEmailAddress = c.getString(0);
+				}
+			} finally {
+				if (c != null) {
+					c.close();
 				}
 			}
 		}
+
+		return collaboratorEmailAddress;
 	}
 
 	// This function is used to load data from this.task object and put it to form
@@ -189,13 +244,6 @@ public class ModifyTaskActivity extends GeneralActivity {
 			// set completion status
 
 		}
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.modify_task, menu);
-		return true;
 	}
 
 }
