@@ -1,6 +1,7 @@
 package com.example.ido.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -52,7 +53,7 @@ public class Task implements Serializable {
 	// COMPUTER GENERATED STUFFS
 	
 	public Task(){
-		
+		this.collaborators = new ArrayList<String>();
 	}
 	
 	public Task(String id, String title, Date dueDate, String note,

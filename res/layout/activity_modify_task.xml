@@ -133,11 +133,10 @@
                         android:text="@string/activity_modify_task_Button_clear_collaborator_String_title" />
                 </LinearLayout>
 
-                <ListView
-                    android:id="@+id/activity_modify_task_Listview_collaborators"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-                </ListView>
+                <ListView 
+                    android:id="@+id/activity_modify_task_ListView_collaborators"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" ></ListView>
             </LinearLayout>
         </TableRow>
 

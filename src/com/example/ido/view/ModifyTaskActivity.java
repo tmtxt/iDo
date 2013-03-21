@@ -1,5 +1,7 @@
 package com.example.ido.view;
 
+import java.util.ArrayList;
+
 import com.example.ido.R;
 import com.example.ido.R.layout;
 import com.example.ido.R.menu;
@@ -17,10 +19,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 // This activity is used for 2 purposes: Creating new Task and Editing existing Task
 // Every time it's loaded, the program should check whether the Task object in the bundle is exist
@@ -41,6 +50,9 @@ public class ModifyTaskActivity extends GeneralActivity {
 
 	// the result code for Add Collaborator Button to call to other activity
 	public static final int SELECT_COLLABORATOR_ACTIVITY_RESULT_CODE = 1;
+	
+	// adapter for Collaborators ListView
+	private ArrayAdapter<String> collaboratorsListViewAdapter;
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -95,6 +107,12 @@ public class ModifyTaskActivity extends GeneralActivity {
 			this.currentJob = this.CURRENT_JOB_ADD;
 			// If the Task object not exist, change the title of the activity to "Create new Task"
 		}
+		
+		// init the Collaborator ListView
+		collaboratorsListViewAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, this.task.getCollaborators());
+		ListView collaboratorsListView = (ListView) findViewById(R.id.activity_modify_task_ListView_collaborators);
+		collaboratorsListView.setAdapter(collaboratorsListViewAdapter);
 
 		// Add action listener for the Select Collaborator button, show the contact list to choose email
 		Button selectCollaboratorButton = (Button) findViewById(R.id.activity_modify_task_Button_select_collaborator);
