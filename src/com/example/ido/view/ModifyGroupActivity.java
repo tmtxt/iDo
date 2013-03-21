@@ -4,6 +4,7 @@ import com.example.ido.R;
 import com.example.ido.R.layout;
 import com.example.ido.R.menu;
 import com.example.ido.controller.ConfirmCancelDialogHandler;
+import com.example.ido.model.DatabaseAdapter;
 import com.example.ido.model.Group;
 
 import android.os.Bundle;
@@ -22,12 +23,15 @@ public class ModifyGroupActivity extends GeneralActivity {
 	// If the activity is creating a new group, this object will be null
 	// Otherwise, it will be retrieved from the bundle
 	private Group group = null;
-	
+
+	// DatabaseAdapter for interacting with database
+	private DatabaseAdapter databaseAdapter;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_modify_group);
-		
+
 		// Check whether this activity is going to create a new Group or edit an existing group
 		// First, retrieve the Group object from the bundle
 		Bundle modifyGroupBundle = this.getIntent().getExtras();
@@ -44,9 +48,13 @@ public class ModifyGroupActivity extends GeneralActivity {
 		} else {
 			// If the Group object not exist, change the title of the activity to "Create new Group"
 		}
-		
+
+		// Open the connection to database
+		databaseAdapter = new DatabaseAdapter(this);
+		databaseAdapter.open();
+
 	}
-	
+
 	// This function is used to load data from this.group object and put it to form
 	private void putDataToForm(){
 		// First check if the group object is exist
@@ -76,10 +84,24 @@ public class ModifyGroupActivity extends GeneralActivity {
 			ConfirmCancelDialogHandler.showConfirmCancelDialog(this);
 			return true;
 
-		// default case, return the base class function
+			// When user select Save button, save the data to database
+		case R.id.activity_modify_group_Menu_actionbar_Item_save:
+			insertGroup();
+			return true;
+			// default case, return the base class function
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+
+	// Insert the current group into database 
+	private void insertGroup(){
+		// Get the group title
+		EditText groupTitle = (EditText) findViewById(R.id.activity_modify_group_Edittext_group_title);
+		// insert new group
+		databaseAdapter.insertGroup(databaseAdapter.getNewGroupId(), groupTitle.getText().toString());
+		// kill this activity and return to the last activity
+		this.finish();
 	}
 
 	@Override

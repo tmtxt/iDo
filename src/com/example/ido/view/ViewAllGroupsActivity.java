@@ -33,6 +33,9 @@ public class ViewAllGroupsActivity extends GeneralActivity {
 	
 	// All Groups List View
 	private ListView allGroupsListView;
+	
+	// 
+	public static final int ADD_NEW_GROUP_REQUEST_CODE = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +51,6 @@ public class ViewAllGroupsActivity extends GeneralActivity {
 		databaseAdapter.open();
 		// Retrieve all data and put it to 
 		initAllGroupsListView();
-		// Close connection to database
-		databaseAdapter.close();
 		
 	}
 	
@@ -91,10 +92,22 @@ public class ViewAllGroupsActivity extends GeneralActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()){
 		case R.id.activity_view_all_groups_Menu_actionbar_Item_add_group:
-			ApplicationNavigationHandler.addNewGroup(this);
+			ApplicationNavigationHandler.addNewGroup(this, ViewAllGroupsActivity.ADD_NEW_GROUP_REQUEST_CODE);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
+		}
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		// Check if the requestCode is ADD_NEW_GROUP_RESULT_CODE
+		if(requestCode == ViewAllGroupsActivity.ADD_NEW_GROUP_REQUEST_CODE){
+			// re-init the list view
+			initAllGroupsListView();
 		}
 	}
 

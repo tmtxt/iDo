@@ -51,9 +51,9 @@ public class ApplicationNavigationHandler {
 	}
 	
 	// Go to ModifyGroupActivity to add a new group
-	public static void addNewGroup(Activity sourceActivity){
+	public static void addNewGroup(Activity sourceActivity, int resultCode){
 		Intent addNewGroupIntent = new Intent(sourceActivity, ModifyGroupActivity.class);
-		sourceActivity.startActivity(addNewGroupIntent);
+		sourceActivity.startActivityForResult(addNewGroupIntent, resultCode);
 	}
 	
 	// Go to ModifyGroupActivity to edit an existing group
