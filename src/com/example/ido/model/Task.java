@@ -55,6 +55,13 @@ public class Task implements Serializable {
 	
 	public Task(){
 		this.collaborators = new ArrayList<String>();
+		this.id = "";
+		this.title = "";
+		this.dueDate = Calendar.getInstance();
+		this.note = "";
+		this.priorityLevel = HIGH_PRIORITY;
+		this.group = null;
+		this.completionStatus = TASK_COMPLETED;
 	}
 	
 	public Task(String id, String title, Calendar dueDate, String note,
