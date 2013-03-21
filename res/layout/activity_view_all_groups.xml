@@ -10,8 +10,7 @@
     <ListView
         android:id="@+id/activity_view_all_groups_Listview_all_groups"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:entries="@array/sample_groups" >
+        android:layout_height="fill_parent" >
     </ListView>
 
 </RelativeLayout>
