@@ -171,6 +171,13 @@ public class DatabaseAdapter {
 		return sqLiteDatabase.insert(GROUP_TABLE_NAME, null, initialValues);
 	}
 	
+	// Return all task currently in database
+	public Cursor getAllTasks(){
+		return sqLiteDatabase.query(TASK_TABLE_NAME,
+				new String[] {TASK_TABLE_COLUMN_ID, TASK_TABLE_COLUMN_TITLE, TASK_TABLE_COLUMN_DUE_DATE, TASK_TABLE_COLUMN_NOTE, TASK_TABLE_COLUMN_PRIORITY, TASK_TABLE_COLUMN_GROUP, TASK_TABLE_COLUMN_COMPLETION_STATUS},
+				null, null, null, null, null);
+	}
+	
 	// Return a new randomly generated group id
 	public String getNewGroupId(){
 		String uuid = null;
