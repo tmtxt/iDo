@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
@@ -27,8 +28,11 @@ public class ViewAllTasksActivity extends GeneralActivity {
 	private DatabaseAdapter databaseAdapter;
 
 	// The cursor for query all groups from database
-	private Cursor allGroupsCursor;
-	
+	private Cursor allTasksCursor;
+
+	// Adapter for All Tasks List View
+	private SimpleCursorAdapter allTasksListViewAdapter;
+
 	// The Add New Task request code
 	public static final int ADD_NEW_TASK_REQUEST_CODE = 1;
 
@@ -51,6 +55,31 @@ public class ViewAllTasksActivity extends GeneralActivity {
 		// Open the connection to database
 		databaseAdapter = new DatabaseAdapter(this);
 		databaseAdapter.open();
+		
+		// Init all tasks and add them to list view
+		initAllTasksListView();
+	}
+
+	// Init the Tasks List View
+	// Load all Tasks from database and put them to list view
+	public void initAllTasksListView(){
+		// Check if the databaseAdapter is not null
+		if(this.databaseAdapter != null){
+			// Get all Tasks
+			allTasksCursor = databaseAdapter.getAllTasks();
+			// TODO replace the deprecated startManagingCursor method with an alternative one
+			startManagingCursor(allTasksCursor);
+			// Get data from which column
+			String[] from = new String[]{DatabaseAdapter.TASK_TABLE_COLUMN_TITLE};
+			// Put data to which components in layout
+			int[] to = new int[]{R.id.activity_view_all_groups_listview_all_groups_layout_textview_group_title};
+			// Init the adapter for list view
+			// TODO replace the deprecated SimpleCursorAdapter with an alternative one
+			allTasksListViewAdapter = new SimpleCursorAdapter(this,
+					R.layout.activity_view_all_groups_listview_all_groups_layout, allTasksCursor, from, to);
+			// Set the adapter for the list view
+			this.allTasksListView.setAdapter(allTasksListViewAdapter);
+		}
 	}
 
 	// Handle the item clicked event of allTasksListView
