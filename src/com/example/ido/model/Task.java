@@ -2,6 +2,7 @@ package com.example.ido.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -16,8 +17,8 @@ public class Task implements Serializable {
 	public static final int LOW_PRIORITY = 2;
 	
 	// Static variables to indicate completion status
-	public static final boolean TASK_COMPLETED = true;
-	public static final boolean TASK_NOT_COMPLETED = false;
+	public static final int TASK_COMPLETED = 0;
+	public static final int TASK_NOT_COMPLETED = 1;
 	
 	// A static variable to use when put it into bundle
 	public static final String TASK_BUNDLE_KEY = "task_bundle_key";  
@@ -29,7 +30,7 @@ public class Task implements Serializable {
 	private String title;
 	
 	// The due date of this task
-	private Date dueDate;
+	private Calendar dueDate;
 	
 	// The task note
 	private String note;
@@ -47,7 +48,7 @@ public class Task implements Serializable {
 	
 	// The completion status of this task
 	// Retrieve from those static variables in this class
-	private boolean completionStatus;
+	private int completionStatus;
 	
 	
 	// COMPUTER GENERATED STUFFS
@@ -56,9 +57,9 @@ public class Task implements Serializable {
 		this.collaborators = new ArrayList<String>();
 	}
 	
-	public Task(String id, String title, Date dueDate, String note,
+	public Task(String id, String title, Calendar dueDate, String note,
 			int priorityLevel, List<String> collaborators, Group group,
-			boolean completionStatus) {
+			int completionStatus) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -86,11 +87,11 @@ public class Task implements Serializable {
 		this.title = title;
 	}
 
-	public Date getDueDate() {
+	public Calendar getDueDate() {
 		return dueDate;
 	}
 
-	public void setDueDate(Date dueDate) {
+	public void setDueDate(Calendar dueDate) {
 		this.dueDate = dueDate;
 	}
 
@@ -126,11 +127,11 @@ public class Task implements Serializable {
 		this.group = group;
 	}
 
-	public boolean isCompletionStatus() {
+	public int getCompletionStatus() {
 		return completionStatus;
 	}
 
-	public void setCompletionStatus(boolean completionStatus) {
+	public void setCompletionStatus(int completionStatus) {
 		this.completionStatus = completionStatus;
 	}
 	

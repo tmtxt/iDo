@@ -1,6 +1,7 @@
 package com.example.ido.view;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import com.example.ido.R;
 import com.example.ido.R.layout;
@@ -227,22 +228,31 @@ public class ModifyTaskActivity extends GeneralActivity {
 		// First check if the current job is edit task
 		if (this.currentJob == this.CURRENT_JOB_EDIT){
 			// Now retrieve data from this Task oject and put it into form components
+			// no need to set Collaborator list since it's a special component and there is another function that handles that task
+
 			// set task title
 			EditText taskTitleEditText = (EditText) findViewById(R.id.activity_modify_task_Edittext_task_title);
 			taskTitleEditText.setText(this.task.getTitle());
+
 			// set task date
 			DatePicker taskDueDatePicker = (DatePicker) findViewById(R.id.activity_modify_task_Datepicker_due_date);
-			taskDueDatePicker.updateDate(this.task.getDueDate().getYear(), this.task.getDueDate().getMonth(), this.task.getDueDate().getDate());
+			taskDueDatePicker.updateDate(this.task.getDueDate().get(Calendar.YEAR),
+					this.task.getDueDate().get(Calendar.MONTH),
+					this.task.getDueDate().get(Calendar.DATE));
+			
 			// set task note
 			EditText taskNoteEditText = (EditText) findViewById(R.id.activity_modify_task_EditText_note);
 			taskNoteEditText.setText(this.task.getNote());
+			
 			// set priority level
 			Spinner taskPriorityLevelSpinner = (Spinner) findViewById(R.id.activity_modify_task_Spinner_priority_level);
 			taskPriorityLevelSpinner.setSelection(this.task.getPriorityLevel());
+			
 			// set group
 
 			// set completion status
-
+			Spinner completionStatusSpinner = (Spinner) findViewById(R.id.activity_modify_task_Spinner_completion_status);
+			completionStatusSpinner.setSelection(this.task.getCompletionStatus());
 		}
 	}
 

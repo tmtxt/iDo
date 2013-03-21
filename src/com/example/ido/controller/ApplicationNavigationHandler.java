@@ -1,6 +1,7 @@
 package com.example.ido.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -70,13 +71,14 @@ public class ApplicationNavigationHandler {
 	// Go to ModifyTaskActivity to edit and existing Task
 	public static void editExistingTask(Activity sourceActivity, Task existingTask){
 		// create a skeleton
-		Date date = new Date();
+		Calendar date = Calendar.getInstance();
+		date.set(Calendar.YEAR, 1992);
 		List<String> collaborators = new ArrayList<String>();
 		collaborators.add("truong.tx@facebook.com");
 		collaborators.add("tommy.txtruong@gmail.com");
 		collaborators.add("s3393320@rmit.edu.vn");
 		Group group = new Group("groupID", "To do this week", null);
-		Task task = new Task("taskID", "Go shopping", date, "This is something I need to do in this week", Task.HIGH_PRIORITY, collaborators, group, Task.TASK_COMPLETED);
+		Task task = new Task("taskID", "Go shopping", date, "This is something I need to do in this week", Task.HIGH_PRIORITY, collaborators, group, Task.TASK_NOT_COMPLETED);
 		
 		Intent editExistingTaskIntent = new Intent(sourceActivity, ModifyTaskActivity.class);
 		// put the task to edit into the bundle
