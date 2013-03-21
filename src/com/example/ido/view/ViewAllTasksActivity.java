@@ -28,6 +28,9 @@ public class ViewAllTasksActivity extends GeneralActivity {
 
 	// The cursor for query all groups from database
 	private Cursor allGroupsCursor;
+	
+	// The Add New Task request code
+	public static final int ADD_NEW_TASK_REQUEST_CODE = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

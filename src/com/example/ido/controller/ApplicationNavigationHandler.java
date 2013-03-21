@@ -104,7 +104,7 @@ public class ApplicationNavigationHandler {
 		} else {
 			// Start the activity for user to add task
 			Intent addNewTaskIntent = new Intent(sourceActivity, ModifyTaskActivity.class);
-			sourceActivity.startActivity(addNewTaskIntent);
+			sourceActivity.startActivityForResult(addNewTaskIntent, ViewAllTasksActivity.ADD_NEW_TASK_REQUEST_CODE);
 		}
 	}
 }

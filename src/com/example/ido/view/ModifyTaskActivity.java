@@ -7,6 +7,7 @@ import com.example.ido.R;
 import com.example.ido.R.layout;
 import com.example.ido.R.menu;
 import com.example.ido.controller.ConfirmCancelDialogHandler;
+import com.example.ido.model.DatabaseAdapter;
 import com.example.ido.model.Group;
 import com.example.ido.model.Task;
 
@@ -29,6 +30,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -58,6 +60,18 @@ public class ModifyTaskActivity extends GeneralActivity {
 
 	// adapter for Collaborators ListView
 	private ArrayAdapter<String> collaboratorsListViewAdapter;
+
+	// DatabaseAdapter for interacting with database
+	private DatabaseAdapter databaseAdapter;
+
+	// The cursor for query all groups from database
+	private Cursor allGroupsCursor;
+
+	// Adapter for All Groups List View
+	private SimpleCursorAdapter allGroupsListViewAdapter;
+	
+	// Group spinner
+	private Spinner allGroupsSpinner;
 
 
 	// OVERIDE FUNCTIONS
@@ -116,8 +130,18 @@ public class ModifyTaskActivity extends GeneralActivity {
 			// If the Task object not exist, change the title of the activity to "Create new Task"
 		}
 
+		// Retrieve the group spinner
+		allGroupsSpinner = (Spinner) findViewById(R.id.activity_modify_task_Spinner_group);
+		
+		// Open the connection to database
+		databaseAdapter = new DatabaseAdapter(this);
+		databaseAdapter.open();
+
 		// init the collaborators
 		this.initColaborators();
+
+		// init the group
+		this.initGroup();
 	}
 
 	@Override
@@ -148,6 +172,31 @@ public class ModifyTaskActivity extends GeneralActivity {
 
 	// UTILITY FUNCTIONS
 
+	// This function is used to init group spinner
+	// it loads all group from database and then put into group spinner
+	// need to be called in the onCreate() method
+	private void initGroup(){
+		// Check if the databaseAdapter is not null
+		if(this.databaseAdapter != null){
+			// Get all groups
+			allGroupsCursor = databaseAdapter.getAllGroups();
+			// TODO replace the deprecated startManagingCursor method with an alternative one
+			startManagingCursor(allGroupsCursor);
+			// Get data from which column
+			String[] from = new String[]{DatabaseAdapter.GROUP_TABLE_COULMN_TITLE};
+			// Put data to which components in layout
+			int[] to = new int[]{R.id.activity_view_all_groups_listview_all_groups_layout_textview_group_title};
+			// Init the adapter for spinner
+			// TODO replace the deprecated SimpleCursorAdapter with an alternative one
+			this.allGroupsListViewAdapter = new SimpleCursorAdapter(this,
+					R.layout.activity_view_all_groups_listview_all_groups_layout, allGroupsCursor, from, to);
+			// Set the adapter for the spinner
+			allGroupsSpinner.setAdapter(allGroupsListViewAdapter);
+		} else {
+			finish();
+		}
+	}
+
 	// This functions is used to init collaborators list from the list adapter, list view...
 	// to action listener for them
 	// need to be called in the onCreate() method
@@ -168,18 +217,18 @@ public class ModifyTaskActivity extends GeneralActivity {
 				selectCollaboratorEmail();
 			}
 		});
-		
+
 		// Add action listener for the Clear Collaborators button, empty the collaborator list
 		Button clearCollaboratorsButton = (Button) findViewById(R.id.activity_modify_task_Button_clear_collaborator);
 		clearCollaboratorsButton.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				clearCollaboratorsList();
 			}
 		});
 	}
-	
+
 	// This function clears all collaborators
 	private void clearCollaboratorsList(){
 		this.task.getCollaborators().clear();
@@ -239,15 +288,15 @@ public class ModifyTaskActivity extends GeneralActivity {
 			taskDueDatePicker.updateDate(this.task.getDueDate().get(Calendar.YEAR),
 					this.task.getDueDate().get(Calendar.MONTH),
 					this.task.getDueDate().get(Calendar.DATE));
-			
+
 			// set task note
 			EditText taskNoteEditText = (EditText) findViewById(R.id.activity_modify_task_EditText_note);
 			taskNoteEditText.setText(this.task.getNote());
-			
+
 			// set priority level
 			Spinner taskPriorityLevelSpinner = (Spinner) findViewById(R.id.activity_modify_task_Spinner_priority_level);
 			taskPriorityLevelSpinner.setSelection(this.task.getPriorityLevel());
-			
+
 			// set group
 
 			// set completion status
