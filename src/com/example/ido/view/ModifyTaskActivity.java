@@ -68,8 +68,8 @@ public class ModifyTaskActivity extends GeneralActivity {
 	private Cursor allGroupsCursor;
 
 	// Adapter for All Groups List View
-	private SimpleCursorAdapter allGroupsListViewAdapter;
-	
+	private SimpleCursorAdapter allGroupsSpinnerAdapter;
+
 	// Group spinner
 	private Spinner allGroupsSpinner;
 
@@ -107,6 +107,16 @@ public class ModifyTaskActivity extends GeneralActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_modify_task);
 
+		// Retrieve the group spinner
+		allGroupsSpinner = (Spinner) findViewById(R.id.activity_modify_task_Spinner_group);
+
+		// Open the connection to database
+		databaseAdapter = new DatabaseAdapter(this);
+		databaseAdapter.open();
+
+		// init the group
+		this.initGroup();
+
 		// Check whether this activity is going to create a new Task or edit an existing one
 		// First, retrieve the Task object from the bundle
 		Bundle modifyTaskBundle = this.getIntent().getExtras();
@@ -130,18 +140,8 @@ public class ModifyTaskActivity extends GeneralActivity {
 			// If the Task object not exist, change the title of the activity to "Create new Task"
 		}
 
-		// Retrieve the group spinner
-		allGroupsSpinner = (Spinner) findViewById(R.id.activity_modify_task_Spinner_group);
-		
-		// Open the connection to database
-		databaseAdapter = new DatabaseAdapter(this);
-		databaseAdapter.open();
-
 		// init the collaborators
 		this.initColaborators();
-
-		// init the group
-		this.initGroup();
 	}
 
 	@Override
@@ -188,10 +188,10 @@ public class ModifyTaskActivity extends GeneralActivity {
 			int[] to = new int[]{R.id.activity_view_all_groups_listview_all_groups_layout_textview_group_title};
 			// Init the adapter for spinner
 			// TODO replace the deprecated SimpleCursorAdapter with an alternative one
-			this.allGroupsListViewAdapter = new SimpleCursorAdapter(this,
+			this.allGroupsSpinnerAdapter = new SimpleCursorAdapter(this,
 					R.layout.activity_view_all_groups_listview_all_groups_layout, allGroupsCursor, from, to);
 			// Set the adapter for the spinner
-			allGroupsSpinner.setAdapter(allGroupsListViewAdapter);
+			allGroupsSpinner.setAdapter(allGroupsSpinnerAdapter);
 		} else {
 			finish();
 		}
@@ -298,11 +298,26 @@ public class ModifyTaskActivity extends GeneralActivity {
 			taskPriorityLevelSpinner.setSelection(this.task.getPriorityLevel());
 
 			// set group
+			allGroupsSpinner.setSelection(this.getGroupPositionInCursor(allGroupsCursor, this.task.getGroup().getId()));
 
 			// set completion status
 			Spinner completionStatusSpinner = (Spinner) findViewById(R.id.activity_modify_task_Spinner_completion_status);
 			completionStatusSpinner.setSelection(this.task.getCompletionStatus());
 		}
+	}
+
+	// get the position of the group with id String groupId in the cursor
+	private int getGroupPositionInCursor(Cursor cursor, String groupId){
+		int position = -1;
+		cursor.moveToFirst();
+		while(!cursor.isAfterLast()){
+			String currentGroupId = cursor.getString(cursor.getColumnIndex(DatabaseAdapter.GROUP_TABLE_COLUMN_ID));
+			if(currentGroupId.equals(groupId)){
+				position = cursor.getPosition();
+			}
+			cursor.moveToNext();
+		}
+		return position;
 	}
 
 }

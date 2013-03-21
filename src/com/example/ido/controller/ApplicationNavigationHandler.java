@@ -79,7 +79,7 @@ public class ApplicationNavigationHandler {
 		collaborators.add("truong.tx@facebook.com");
 		collaborators.add("tommy.txtruong@gmail.com");
 		collaborators.add("s3393320@rmit.edu.vn");
-		Group group = new Group("groupID", "To do this week", null);
+		Group group = new Group("98b7ae74-ea0d-4dd2-86ba-c6df4fdf62e6", "To do this week", null);
 		Task task = new Task("taskID", "Go shopping", date, "This is something I need to do in this week", Task.HIGH_PRIORITY, collaborators, group, Task.TASK_NOT_COMPLETED);
 		
 		Intent editExistingTaskIntent = new Intent(sourceActivity, ModifyTaskActivity.class);
