@@ -9,12 +9,14 @@ import com.example.ido.controller.ConfirmCancelDialogHandler;
 import com.example.ido.model.Group;
 import com.example.ido.model.Task;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,7 +52,7 @@ public class ModifyTaskActivity extends GeneralActivity {
 
 	// the result code for Add Collaborator Button to call to other activity
 	public static final int SELECT_COLLABORATOR_ACTIVITY_RESULT_CODE = 1;
-	
+
 	// adapter for Collaborators ListView
 	private ArrayAdapter<String> collaboratorsListViewAdapter;
 
@@ -107,7 +109,7 @@ public class ModifyTaskActivity extends GeneralActivity {
 			this.currentJob = this.CURRENT_JOB_ADD;
 			// If the Task object not exist, change the title of the activity to "Create new Task"
 		}
-		
+
 		// init the Collaborator ListView
 		collaboratorsListViewAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, this.task.getCollaborators());
@@ -136,7 +138,32 @@ public class ModifyTaskActivity extends GeneralActivity {
 
 		// check if request code is from Select Collaborator Button
 		if(requestCode == ModifyTaskActivity.SELECT_COLLABORATOR_ACTIVITY_RESULT_CODE){
+			// Now get the email address of the contact
+			// Reference: http://stackoverflow.com/questions/4993063/how-to-call-android-contacts-list-and-select-one-phone-number-from-its-details-s
+			if(data != null){
+				Uri uri = data.getData();
 
+				if (uri != null) {
+					Cursor c = null;
+					try {
+						c = getContentResolver().query(uri, new String[]{ 
+								ContactsContract.CommonDataKinds.Email.ADDRESS,  
+								ContactsContract.CommonDataKinds.Email.TYPE },
+								null, null, null);
+
+						if (c != null && c.moveToFirst()) {
+							String address = c.getString(0);
+							// update the listview
+							this.task.getCollaborators().add(address);
+							this.collaboratorsListViewAdapter.notifyDataSetChanged();
+						}
+					} finally {
+						if (c != null) {
+							c.close();
+						}
+					}
+				}
+			}
 		}
 	}
 
