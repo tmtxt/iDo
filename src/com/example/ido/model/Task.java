@@ -51,6 +51,10 @@ public class Task implements Serializable {
 	
 	// COMPUTER GENERATED STUFFS
 	
+	public Task(){
+		
+	}
+	
 	public Task(String id, String title, Date dueDate, String note,
 			int priorityLevel, List<String> collaborators, Group group,
 			boolean completionStatus) {

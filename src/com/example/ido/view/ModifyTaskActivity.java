@@ -29,12 +29,18 @@ import android.widget.Spinner;
 public class ModifyTaskActivity extends GeneralActivity {
 
 	// a Task object to hold the data about the current task being processed
-	// If the activity is creating a new task, this object will be null
+	// If the activity is creating a new task, this object will be initialized
 	// Otherwise, it will be retrieved from the bundle
 	private Task task = null;
-	
+
+	// store the current job of this activity, Edit or Add task
+	// value will be set from those 2 static variables below
+	private int currentJob;
+	private final int CURRENT_JOB_EDIT = 1;
+	private final int CURRENT_JOB_ADD = 2;
+
 	// the result code for Add Collaborator Button to call to other activity
-	public static int SELECT_COLLABORATOR_ACTIVITY_RESULT_CODE = 1;
+	public static final int SELECT_COLLABORATOR_ACTIVITY_RESULT_CODE = 1;
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -77,17 +83,23 @@ public class ModifyTaskActivity extends GeneralActivity {
 		}
 		// Next, check if it is null
 		if (task != null){
+			// Change the currentJob to edit task
+			this.currentJob = this.CURRENT_JOB_EDIT;
 			// If the Task object exist, load data from it and put to the form
 			putDataToForm();
 			// After that, change the title of the activity to "Edit task " + task name
 		} else {
+			// Init the new Task object
+			this.task = new Task();
+			// Change the currentJob to add new task
+			this.currentJob = this.CURRENT_JOB_ADD;
 			// If the Task object not exist, change the title of the activity to "Create new Task"
 		}
-		
+
 		// Add action listener for the Select Collaborator button, show the contact list to choose email
 		Button selectCollaboratorButton = (Button) findViewById(R.id.activity_modify_task_Button_select_collaborator);
 		selectCollaboratorButton.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -99,10 +111,21 @@ public class ModifyTaskActivity extends GeneralActivity {
 		});
 	}
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+
+		// check if request code is from Select Collaborator Button
+		if(requestCode == ModifyTaskActivity.SELECT_COLLABORATOR_ACTIVITY_RESULT_CODE){
+
+		}
+	}
+
 	// This function is used to load data from this.task object and put it to form
 	private void putDataToForm(){
-		// First check if the task object is exist
-		if (this.task != null){
+		// First check if the current job is edit task
+		if (this.currentJob == this.CURRENT_JOB_EDIT){
 			// Now retrieve data from this Task oject and put it into form components
 			// set task title
 			EditText taskTitleEditText = (EditText) findViewById(R.id.activity_modify_task_Edittext_task_title);
@@ -117,9 +140,9 @@ public class ModifyTaskActivity extends GeneralActivity {
 			Spinner taskPriorityLevelSpinner = (Spinner) findViewById(R.id.activity_modify_task_Spinner_priority_level);
 			taskPriorityLevelSpinner.setSelection(this.task.getPriorityLevel());
 			// set group
-			
+
 			// set completion status
-			
+
 		}
 	}
 
