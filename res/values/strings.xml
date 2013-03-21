@@ -56,7 +56,9 @@
     <string name="activity_view_task_detail_Menu_actionbar_Item_edit_String_title">Edit Task</string>
     <string name="activity_view_task_detail_Menu_actionbar_Item_delete_String_title">Delete Task</string>
     <string name="activity_view_task_detail_Menu_actionbar_Item_add_String_title">Add Task</string>
-    <string name="activity_setting_TextView_notification_String_title">Notification</string>
+    <string name="activity_setting_Checkbox_notification_String_title">Enable Notification</string>
+    <string name="activity_setting_Menu_actionbar_Item_save_String_title">Save</string>
+    <string name="activity_setting_Menu_actionbar_Item_cancel_String_title">Cancel</string>
 
     <string-array name="sample_groups">
         <item>Group 1</item>

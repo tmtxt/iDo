@@ -1,9 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
+        android:id="@+id/activity_setting_Menu_actionbar_Item_save"
+        android:icon="@android:drawable/ic_menu_save"
+        android:showAsAction="always"
+        android:title="@string/activity_setting_Menu_actionbar_Item_save_String_title"/>
+    <item
+        android:id="@+id/activity_setting_Menu_actionbar_Item_cancel"
+        android:icon="@android:drawable/ic_menu_revert"
+        android:showAsAction="always"
+        android:title="@string/activity_setting_Menu_actionbar_Item_cancel_String_title"/>
 
 </menu>
