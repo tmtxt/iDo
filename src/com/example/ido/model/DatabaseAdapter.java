@@ -185,5 +185,4 @@ public class DatabaseAdapter {
 		
 		return uuid;
 	}
-	
 }

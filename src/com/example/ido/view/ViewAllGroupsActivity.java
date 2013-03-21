@@ -45,7 +45,6 @@ public class ViewAllGroupsActivity extends GeneralActivity {
 		// Retrieve the all groups list view
 		this.allGroupsListView = (ListView) findViewById(R.id.activity_view_all_groups_Listview_all_groups);
 
-		// Retrieve all groups from datavase
 		// Open the connection to database
 		databaseAdapter = new DatabaseAdapter(this);
 		databaseAdapter.open();
