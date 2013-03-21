@@ -8,13 +8,16 @@ import com.example.ido.model.Group;
 import com.example.ido.model.Task;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -29,6 +32,9 @@ public class ModifyTaskActivity extends GeneralActivity {
 	// If the activity is creating a new task, this object will be null
 	// Otherwise, it will be retrieved from the bundle
 	private Task task = null;
+	
+	// the result code for Add Collaborator Button to call to other activity
+	public static int SELECT_COLLABORATOR_ACTIVITY_RESULT_CODE = 1;
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -77,6 +83,20 @@ public class ModifyTaskActivity extends GeneralActivity {
 		} else {
 			// If the Task object not exist, change the title of the activity to "Create new Task"
 		}
+		
+		// Add action listener for the Select Collaborator button, show the contact list to choose email
+		Button selectCollaboratorButton = (Button) findViewById(R.id.activity_modify_task_Button_select_collaborator);
+		selectCollaboratorButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent selectCollaboratorIntent = new Intent(Intent.ACTION_PICK);
+				selectCollaboratorIntent.setType(ContactsContract.CommonDataKinds.Email.CONTENT_TYPE);
+				startActivityForResult(selectCollaboratorIntent,
+						ModifyTaskActivity.SELECT_COLLABORATOR_ACTIVITY_RESULT_CODE);
+			}
+		});
 	}
 
 	// This function is used to load data from this.task object and put it to form

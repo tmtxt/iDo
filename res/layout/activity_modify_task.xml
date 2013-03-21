@@ -102,6 +102,43 @@
                 android:text="@string/activity_modify_task_TextView_collaborators_String_title"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:gravity="right"
+                android:orientation="vertical"
+                android:padding="3dip" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <Button
+                        android:id="@+id/activity_modify_task_Button_select_collaborator"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableLeft="@android:drawable/ic_menu_add"
+                        android:text="@string/activity_modify_task_Button_select_collaborator_String_title" />
+
+                    <Button
+                        android:id="@+id/activity_modify_task_Button_clear_collaborator"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableLeft="@android:drawable/ic_menu_close_clear_cancel"
+                        android:text="@string/activity_modify_task_Button_clear_collaborator_String_title" />
+                </LinearLayout>
+
+                <ListView
+                    android:id="@+id/activity_modify_task_Listview_collaborators"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+                </ListView>
+            </LinearLayout>
         </TableRow>
 
         <View
@@ -133,15 +170,15 @@
 
             <TextView
                 android:padding="3dip"
-                android:textStyle="bold"
                 android:text="@string/activity_modify_task_TextView_completion_status_String_title"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
 
             <Spinner
-                android:gravity="right"
-                android:padding="3dip"
                 android:id="@+id/activity_modify_task_Spinner_completion_status"
                 android:entries="@array/activity_modify_task_Spinner_completion_status_Stringarray_values"
+                android:gravity="right"
+                android:padding="3dip"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
     </TableLayout>
