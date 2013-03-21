@@ -28,9 +28,6 @@ public class ViewTaskDetailActivity extends GeneralActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()){
-		case R.id.activity_view_task_detail_Menu_actionbar_Item_add:
-			ApplicationNavigationHandler.addNewTask(this);
-			return true;
 		case R.id.activity_view_task_detail_Menu_actionbar_Item_edit:
 			ApplicationNavigationHandler.editExistingTask(this, null);
 			return true;
