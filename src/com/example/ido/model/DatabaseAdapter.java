@@ -88,6 +88,16 @@ public class DatabaseAdapter {
 	public static final String COLLABORATOR_TABLE_COLUMN_EMAIL = "_email";
 	// Collaborator table - task id column name
 	public static final String COLLABORATOR_TABLE_COLUMN_TASK_ID = "_task_id";
+	// Collaborator table create statement
+	public static final String COLLABORATOR_TABLE_CREATE
+			= "create table " + COLLABORATOR_TABLE_NAME
+			+ " ( "
+			+ COLLABORATOR_TABLE_COLUMN_ID + " text primary key, "
+			+ COLLABORATOR_TABLE_COLUMN_EMAIL + " text not null, "
+			+ COLLABORATOR_TABLE_COLUMN_TASK_ID + " text not null, "
+			// create the foreign key from column task id -> task(id)
+			+ "foreign key ( " + COLLABORATOR_TABLE_COLUMN_TASK_ID + " ) references " + TASK_TABLE_NAME + " ( " + TASK_TABLE_COLUMN_ID + " ) "
+			+ " );";
 	
 	
 	// STATIC CLASS DATABASE HELPER
@@ -105,6 +115,8 @@ public class DatabaseAdapter {
 			db.execSQL(DatabaseAdapter.GROUP_TABLE_CREATE);
 			// Create the Task table
 			db.execSQL(DatabaseAdapter.TASK_TABLE_CREATE);
+			// Create the collaborator table
+			db.execSQL(DatabaseAdapter.COLLABORATOR_TABLE_CREATE);
 		}
 
 		@Override
