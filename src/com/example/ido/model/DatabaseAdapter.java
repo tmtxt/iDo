@@ -1,5 +1,6 @@
 package com.example.ido.model;
 
+import java.util.Calendar;
 import java.util.UUID;
 
 import android.content.ContentValues;
@@ -69,7 +70,7 @@ public class DatabaseAdapter {
 			+ " ( "
 			+ TASK_TABLE_COLUMN_ID + " text primary key, "
 			+ TASK_TABLE_COLUMN_TITLE + " text not null, "
-			+ TASK_TABLE_COLUMN_DUE_DATE + " text not null, "
+			+ TASK_TABLE_COLUMN_DUE_DATE + " integer not null, "
 			+ TASK_TABLE_COLUMN_NOTE + " text,"
 			+ TASK_TABLE_COLUMN_PRIORITY + " integer not null, "
 			+ TASK_TABLE_COLUMN_GROUP + " text not null, "
@@ -169,6 +170,19 @@ public class DatabaseAdapter {
 		initialValues.put(GROUP_TABLE_COLUMN_ID, groupID);
 		initialValues.put(GROUP_TABLE_COULMN_TITLE, groupTitle);
 		return sqLiteDatabase.insert(GROUP_TABLE_NAME, null, initialValues);
+	}
+	
+	// Insert a new task into Task table
+	public long insertTask(Task task){
+		ContentValues initialValues = new ContentValues();
+		initialValues.put(TASK_TABLE_COLUMN_ID, getNewTaskId());
+		initialValues.put(TASK_TABLE_COLUMN_TITLE, task.getTitle());
+		initialValues.put(TASK_TABLE_COLUMN_DUE_DATE, task.getDueDate().getTimeInMillis());
+		initialValues.put(TASK_TABLE_COLUMN_NOTE, task.getNote());
+		initialValues.put(TASK_TABLE_COLUMN_PRIORITY, task.getPriorityLevel());
+		initialValues.put(TASK_TABLE_COLUMN_GROUP, task.getGroup().getId());
+		initialValues.put(TASK_TABLE_COLUMN_COMPLETION_STATUS, task.getCompletionStatus());
+		return sqLiteDatabase.insert(TASK_TABLE_NAME, null, initialValues);
 	}
 	
 	// Return all task currently in database
