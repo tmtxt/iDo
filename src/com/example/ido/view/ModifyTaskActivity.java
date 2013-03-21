@@ -87,8 +87,18 @@ public class ModifyTaskActivity extends GeneralActivity {
 			// The rest (leave activity or not), the function ApplicationDialogHandler.showConfirmCancelDialog() will handle
 			ConfirmCancelDialogHandler.showConfirmCancelDialog(this);
 			return true;
-
-			// default case, return the base class function
+			
+		// When user select Save
+		case R.id.activity_modify_task_Menu_actionbar_Item_save:
+			// validate form
+			
+			// add new task to database
+			addNewTask();
+			// close this activity
+			finish();
+			return true;
+		
+		// default case, return the base class function
 		default:
 			return super.onOptionsItemSelected(item);
 		}
@@ -171,6 +181,38 @@ public class ModifyTaskActivity extends GeneralActivity {
 
 
 	// UTILITY FUNCTIONS
+	
+	// THis function is used to add new task to database
+	private void addNewTask(){
+		// Retrieve data from form and put into this.task object
+		// No need to set collaborators since the list view handles it automatically
+		// set task id
+		String taskId = databaseAdapter.getNewTaskId();
+		this.task.setId(taskId);
+		// set task title
+		String taskTitle = ((EditText)findViewById(R.id.activity_modify_task_Edittext_task_title)).getText().toString();
+		this.task.setTitle(taskTitle);
+		// set due date
+		DatePicker taskDueDatePicker = (DatePicker) findViewById(R.id.activity_modify_task_Datepicker_due_date);
+		this.task.getDueDate().set(Calendar.DATE, taskDueDatePicker.getDayOfMonth());
+		this.task.getDueDate().set(Calendar.MONTH, taskDueDatePicker.getMonth());
+		this.task.getDueDate().set(Calendar.YEAR, taskDueDatePicker.getYear());
+		// set note
+		String taskNote = ((EditText)findViewById(R.id.activity_modify_task_EditText_note)).getText().toString();
+		this.task.setNote(taskNote);
+		// set priority level
+		int priorityLevel = ((Spinner)findViewById(R.id.activity_modify_task_Spinner_priority_level)).getSelectedItemPosition();
+		this.task.setPriorityLevel(priorityLevel);
+		// set completion status
+		int completionStatus = ((Spinner)findViewById(R.id.activity_modify_task_Spinner_completion_status)).getSelectedItemPosition();
+		this.task.setCompletionStatus(completionStatus);
+		// set group
+		Spinner groupSpinner = (Spinner) findViewById(R.id.activity_modify_task_Spinner_group);
+		this.task.getGroup().setId(getGroupIdByPosition(allGroupsCursor, groupSpinner.getSelectedItemPosition()));
+		this.databaseAdapter.insertTask(this.task);
+		
+		// Retrieve the list of collaborators and insert into 
+	}
 
 	// This function is used to init group spinner
 	// it loads all group from database and then put into group spinner
@@ -304,6 +346,15 @@ public class ModifyTaskActivity extends GeneralActivity {
 			Spinner completionStatusSpinner = (Spinner) findViewById(R.id.activity_modify_task_Spinner_completion_status);
 			completionStatusSpinner.setSelection(this.task.getCompletionStatus());
 		}
+	}
+	
+	// get the id of the group with the input position
+	private String getGroupIdByPosition(Cursor cursor, int position){
+		String groupId = null;
+		cursor.moveToFirst();
+		cursor.move(position);
+		groupId = cursor.getString(cursor.getColumnIndex(DatabaseAdapter.GROUP_TABLE_COLUMN_ID));
+		return groupId;
 	}
 
 	// get the position of the group with id String groupId in the cursor

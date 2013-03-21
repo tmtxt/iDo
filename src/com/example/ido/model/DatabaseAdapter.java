@@ -175,7 +175,7 @@ public class DatabaseAdapter {
 	// Insert a new task into Task table
 	public long insertTask(Task task){
 		ContentValues initialValues = new ContentValues();
-		initialValues.put(TASK_TABLE_COLUMN_ID, getNewTaskId());
+		initialValues.put(TASK_TABLE_COLUMN_ID, task.getId());
 		initialValues.put(TASK_TABLE_COLUMN_TITLE, task.getTitle());
 		initialValues.put(TASK_TABLE_COLUMN_DUE_DATE, task.getDueDate().getTimeInMillis());
 		initialValues.put(TASK_TABLE_COLUMN_NOTE, task.getNote());

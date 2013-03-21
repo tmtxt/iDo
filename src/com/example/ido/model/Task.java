@@ -60,7 +60,7 @@ public class Task implements Serializable {
 		this.dueDate = Calendar.getInstance();
 		this.note = "";
 		this.priorityLevel = HIGH_PRIORITY;
-		this.group = null;
+		this.group = new Group();
 		this.completionStatus = TASK_COMPLETED;
 	}
 	
@@ -82,7 +82,7 @@ public class Task implements Serializable {
 		return id;
 	}
 
-	private void setId(String id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
