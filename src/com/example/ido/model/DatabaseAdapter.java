@@ -178,6 +178,27 @@ public class DatabaseAdapter {
 				null, null, null, null, null);
 	}
 	
+	// Find task by its id
+	public Cursor getTaskById(String taskId){
+		return sqLiteDatabase.query(TASK_TABLE_NAME,
+				new String[] {TASK_TABLE_COLUMN_ID, TASK_TABLE_COLUMN_TITLE, TASK_TABLE_COLUMN_DUE_DATE, TASK_TABLE_COLUMN_NOTE, TASK_TABLE_COLUMN_PRIORITY, TASK_TABLE_COLUMN_GROUP, TASK_TABLE_COLUMN_COMPLETION_STATUS},
+				TASK_TABLE_COLUMN_ID + " = '" + taskId + "'", null, null, null, null);
+	}
+	
+	// Return a new randomly generated task id
+	public String getNewTaskId(){
+		String uuid = null;
+		Cursor cursor = null;
+		
+		// Create a random uuid and then check if it's exist
+		do {
+			uuid = UUID.randomUUID().toString();
+			cursor = getTaskById(uuid);
+		} while (cursor.getCount() > 0);
+		
+		return uuid;
+	}
+	
 	// Return a new randomly generated group id
 	public String getNewGroupId(){
 		String uuid = null;
