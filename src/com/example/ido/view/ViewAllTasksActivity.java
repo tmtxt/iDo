@@ -5,10 +5,12 @@ import com.example.ido.R.id;
 import com.example.ido.R.layout;
 import com.example.ido.R.menu;
 import com.example.ido.controller.ApplicationNavigationHandler;
+import com.example.ido.model.DatabaseAdapter;
 
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.database.Cursor;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,13 +20,20 @@ import android.widget.ListView;
 
 public class ViewAllTasksActivity extends GeneralActivity {
 
+	// The List View that shows all Tasks
 	private ListView allTasksListView;
-	
+
+	// DatabaseAdapter for interacting with database
+	private DatabaseAdapter databaseAdapter;
+
+	// The cursor for query all groups from database
+	private Cursor allGroupsCursor;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_all_tasks);
-		
+
 		// set action listener for allTasksListView
 		allTasksListView = (ListView) findViewById(R.id.activity_view_all_tasks_Listview_all_tasks);
 		allTasksListView.setOnItemClickListener(new OnItemClickListener() {
@@ -35,8 +44,12 @@ public class ViewAllTasksActivity extends GeneralActivity {
 				allTaskListViewItemClickHandler(arg0, arg1, arg2);
 			}
 		});
+
+		// Open the connection to database
+		databaseAdapter = new DatabaseAdapter(this);
+		databaseAdapter.open();
 	}
-	
+
 	// Handle the item clicked event of allTasksListView
 	private void allTaskListViewItemClickHandler(AdapterView<?> adapterView, View listView, int selectedItemId){
 		ApplicationNavigationHandler.viewTaskDetail(this);
@@ -46,7 +59,7 @@ public class ViewAllTasksActivity extends GeneralActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()){
 		case R.id.activity_view_all_tasks_Menu_actionbar_Item_add_task:
-			ApplicationNavigationHandler.addNewTask(this);
+			ApplicationNavigationHandler.addNewTask(this, this.databaseAdapter);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

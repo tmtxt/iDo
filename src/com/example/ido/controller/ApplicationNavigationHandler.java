@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import com.example.ido.model.DatabaseAdapter;
 import com.example.ido.model.Group;
 import com.example.ido.model.Task;
 import com.example.ido.view.ModifyGroupActivity;
@@ -16,6 +17,7 @@ import com.example.ido.view.ViewTaskDetailActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract.CommonDataKinds.Note;
 
@@ -92,8 +94,17 @@ public class ApplicationNavigationHandler {
 	}
 	
 	// Go to ModifyTaskActivity
-	public static void addNewTask(Activity sourceActivity){
-		Intent addNewTaskIntent = new Intent(sourceActivity, ModifyTaskActivity.class);
-		sourceActivity.startActivity(addNewTaskIntent);
+	public static void addNewTask(Activity sourceActivity, DatabaseAdapter databaseAdapter){
+		// Get all groups from database
+		Cursor allGroupsCursor = databaseAdapter.getAllGroups();
+		// Check if there is no group, then ask user to add group first
+		if(allGroupsCursor.getCount() == 0){
+			// Ask user to add group first
+			MessageDialogHandler.showMessageDialog(sourceActivity, "No group added!\nPlease go back and add group first");
+		} else {
+			// Start the activity for user to add task
+			Intent addNewTaskIntent = new Intent(sourceActivity, ModifyTaskActivity.class);
+			sourceActivity.startActivity(addNewTaskIntent);
+		}
 	}
 }
