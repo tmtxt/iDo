@@ -93,7 +93,7 @@ public class DatabaseAdapter {
 	public static final String COLLABORATOR_TABLE_CREATE
 			= "create table " + COLLABORATOR_TABLE_NAME
 			+ " ( "
-			+ COLLABORATOR_TABLE_COLUMN_ID + " text primary key, "
+			+ COLLABORATOR_TABLE_COLUMN_ID + " integer primary key autoincrement, "
 			+ COLLABORATOR_TABLE_COLUMN_EMAIL + " text not null, "
 			+ COLLABORATOR_TABLE_COLUMN_TASK_ID + " text not null, "
 			// create the foreign key from column task id -> task(id)
@@ -122,6 +122,8 @@ public class DatabaseAdapter {
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+			// Drop Collaborator table is exist
+			db.execSQL("Drop table if exists " + DatabaseAdapter.COLLABORATOR_TABLE_NAME);
 			// Drop Task table if exists
 			db.execSQL("Drop table if exists " + DatabaseAdapter.TASK_TABLE_NAME);
 			// Drop Group table if exists
