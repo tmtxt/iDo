@@ -210,8 +210,6 @@ public class ModifyTaskActivity extends GeneralActivity {
 		Spinner groupSpinner = (Spinner) findViewById(R.id.activity_modify_task_Spinner_group);
 		this.task.getGroup().setId(getGroupIdByPosition(allGroupsCursor, groupSpinner.getSelectedItemPosition()));
 		this.databaseAdapter.insertTask(this.task);
-		
-		// Retrieve the list of collaborators and insert into 
 	}
 
 	// This function is used to init group spinner

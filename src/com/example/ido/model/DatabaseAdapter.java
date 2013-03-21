@@ -175,7 +175,7 @@ public class DatabaseAdapter {
 	}
 	
 	// Insert a new task into Task table
-	public long insertTask(Task task){
+	public void insertTask(Task task){
 		ContentValues initialValues = new ContentValues();
 		initialValues.put(TASK_TABLE_COLUMN_ID, task.getId());
 		initialValues.put(TASK_TABLE_COLUMN_TITLE, task.getTitle());
@@ -184,7 +184,10 @@ public class DatabaseAdapter {
 		initialValues.put(TASK_TABLE_COLUMN_PRIORITY, task.getPriorityLevel());
 		initialValues.put(TASK_TABLE_COLUMN_GROUP, task.getGroup().getId());
 		initialValues.put(TASK_TABLE_COLUMN_COMPLETION_STATUS, task.getCompletionStatus());
-		return sqLiteDatabase.insert(TASK_TABLE_NAME, null, initialValues);
+		sqLiteDatabase.insert(TASK_TABLE_NAME, null, initialValues);
+		
+		// insert collaborators
+		this.insertCollaborators(task);
 	}
 	
 	// Return all task currently in database
@@ -199,6 +202,16 @@ public class DatabaseAdapter {
 		return sqLiteDatabase.query(TASK_TABLE_NAME,
 				new String[] {TASK_TABLE_COLUMN_ID, TASK_TABLE_COLUMN_TITLE, TASK_TABLE_COLUMN_DUE_DATE, TASK_TABLE_COLUMN_NOTE, TASK_TABLE_COLUMN_PRIORITY, TASK_TABLE_COLUMN_GROUP, TASK_TABLE_COLUMN_COMPLETION_STATUS},
 				TASK_TABLE_COLUMN_ID + " = '" + taskId + "'", null, null, null, null);
+	}
+	
+	// insert all collaborators of a given task
+	public void insertCollaborators(Task task){
+		for (String email : task.getCollaborators()){
+			ContentValues initialValues = new ContentValues();
+			initialValues.put(COLLABORATOR_TABLE_COLUMN_EMAIL, email);
+			initialValues.put(COLLABORATOR_TABLE_COLUMN_TASK_ID, task.getId());
+			sqLiteDatabase.insert(COLLABORATOR_TABLE_NAME, null, initialValues);
+		}
 	}
 	
 	// Return a new randomly generated task id
