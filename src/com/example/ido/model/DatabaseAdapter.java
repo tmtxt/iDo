@@ -1,5 +1,7 @@
 package com.example.ido.model;
 
+import java.util.UUID;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -95,12 +97,34 @@ public class DatabaseAdapter {
 				new String[] {GROUP_TABLE_COLUMN_ID, GROUP_TABLE_COULMN_TITLE}, null, null, null, null, null);
 	}
 	
+	// Find the group by its id
+	public Cursor getGroupById(String groupId){
+		return sqLiteDatabase.query(GROUP_TABLE_NAME,
+				new String[] {GROUP_TABLE_COLUMN_ID, GROUP_TABLE_COULMN_TITLE},
+				GROUP_TABLE_COLUMN_ID + " = '" + groupId + "'", null, null, null, null);
+	}
+	
 	// Insert a new group into Group table
 	public long insertGroup(String groupID, String groupTitle){
 		ContentValues initialValues = new ContentValues();
 		initialValues.put(GROUP_TABLE_COLUMN_ID, groupID);
 		initialValues.put(GROUP_TABLE_COULMN_TITLE, groupTitle);
 		return sqLiteDatabase.insert(GROUP_TABLE_NAME, null, initialValues);
+	}
+	
+	// Return a new randomly generated group id
+	public String getNewGroupId(){
+		String uuid = null;
+		Cursor cursor = null;
+		
+		// Create a random uuid and then check if it's exist
+		// If yes, re-generate
+		do {
+			uuid = UUID.randomUUID().toString();
+			cursor = getGroupById(uuid);
+		} while (cursor.getCount() > 0);
+		
+		return uuid;
 	}
 	
 }
