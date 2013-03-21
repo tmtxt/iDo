@@ -18,8 +18,11 @@ public class DatabaseAdapter {
 	// Used for logging
 	public static final String TAG = "ido";
 	
+	// Some variables used for interacting with database
 	private DatabaseHelper databaseHelper;
 	private SQLiteDatabase sqLiteDatabase;
+	
+	// Current context (activity)
 	private final Context context;
 	
 	// Database name
@@ -30,7 +33,7 @@ public class DatabaseAdapter {
 	
 	// Group table
 	// Group table name
-	public static final String GROUP_TABLE_NAME = "task_group";
+	public static final String GROUP_TABLE_NAME = "_group";
 	// Group table - id column name
 	public static final String GROUP_TABLE_COLUMN_ID = "_id";
 	// Group table - title coumn name
@@ -42,6 +45,49 @@ public class DatabaseAdapter {
 			+ GROUP_TABLE_COLUMN_ID + " text primary key, "
 			+ GROUP_TABLE_COULMN_TITLE + " text not null "
 			+ " );";
+	
+	// Task table
+	// Task table name
+	public static final String TASK_TABLE_NAME = "_task";
+	// Task table - id column name
+	public static final String TASK_TABLE_COLUMN_ID = "_id";
+	// Task table - title column name
+	public static final String TASK_TABLE_COLUMN_TITLE = "_title";
+	// Task table - due date column name
+	public static final String TASK_TABLE_COLUMN_DUE_DATE = "_due_date";
+	// Task table - note column name
+	public static final String TASK_TABLE_COLUMN_NOTE = "_note";
+	// Task table - priority level column name
+	public static final String TASK_TABLE_COLUMN_PRIORITY = "_priority";
+	// Task table - group column name
+	public static final String TASK_TABLE_COLUMN_GROUP = "_group";
+	// Task table - completion status column name
+	public static final String TASK_TABLE_COLUMN_COMPLETION_STATUS = "_completion_status";
+	// Task table create statement
+	public static final String TASK_TABLE_CREATE
+			= "create table " + TASK_TABLE_NAME
+			+ " ( "
+			+ TASK_TABLE_COLUMN_ID + " text primary key, "
+			+ TASK_TABLE_COLUMN_TITLE + " text not null, "
+			+ TASK_TABLE_COLUMN_DUE_DATE + " text not null, "
+			+ TASK_TABLE_COLUMN_NOTE + " text,"
+			+ TASK_TABLE_COLUMN_PRIORITY + " integer not null, "
+			+ TASK_TABLE_COLUMN_GROUP + " text not null, "
+			+ TASK_TABLE_COLUMN_COMPLETION_STATUS + " integer not null, "
+			// create the foreign key from column group -> _group(id)
+			+ "foreign key ( " + TASK_TABLE_COLUMN_GROUP + " ) references " + GROUP_TABLE_NAME + " ( " + GROUP_TABLE_COLUMN_ID + " ) "
+			+ " );";
+			
+	
+	// Collaborator table
+	// Collaborator table name
+	public static final String COLLABORATOR_TABLE_NAME = "_collaborator";
+	// Collaborator table - id column name
+	public static final String COLLABORATOR_TABLE_COLUMN_ID = "_id";
+	// Collaborator table - email column name
+	public static final String COLLABORATOR_TABLE_COLUMN_EMAIL = "_email";
+	// Collaborator table - task id column name
+	public static final String COLLABORATOR_TABLE_COLUMN_TASK_ID = "_task_id";
 	
 	
 	// STATIC CLASS DATABASE HELPER
@@ -58,15 +104,16 @@ public class DatabaseAdapter {
 			// Create the Group table 
 			db.execSQL(DatabaseAdapter.GROUP_TABLE_CREATE);
 			// Create the Task table
-			
+			db.execSQL(DatabaseAdapter.TASK_TABLE_CREATE);
 		}
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 			// Drop Task table if exists
-			
+			db.execSQL("Drop table if exists " + DatabaseAdapter.TASK_TABLE_NAME);
 			// Drop Group table if exists
-			db.execSQL("Drop table if exists " + GROUP_TABLE_NAME);
+			db.execSQL("Drop table if exists " + DatabaseAdapter.GROUP_TABLE_NAME);
+			onCreate(db);
 		}
 		
 	}
