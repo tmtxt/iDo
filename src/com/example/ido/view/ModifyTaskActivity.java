@@ -78,11 +78,21 @@ public class ModifyTaskActivity extends GeneralActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent resultIntent;
+		Bundle resultBundle;
+
 		switch (item.getItemId()){
 
 		// When user select Cancel or Home button, show a confirmation dialog
 		case R.id.activity_modify_task_Menu_actionbar_Item_cancel:
 		case android.R.id.home:
+			// set the result for the previous activity
+			resultIntent = new Intent();
+			resultBundle = new Bundle();
+			resultBundle.putSerializable(Task.TASK_BUNDLE_KEY, this.task);
+			resultIntent.putExtras(resultBundle);
+			setResult(ViewTaskDetailActivity.EDIT_TASK_REQUEST_CODE, resultIntent);
+
 			// Show the confirmation dialog
 			// The rest (leave activity or not), the function ApplicationDialogHandler.showConfirmCancelDialog() will handle
 			ConfirmCancelDialogHandler.showConfirmCancelDialog(this);
@@ -99,14 +109,14 @@ public class ModifyTaskActivity extends GeneralActivity {
 			} else {
 				// edit the current task
 				editExistingTask();
-				
+
 				// set the result for the previous activity
-				Intent resultIntent = new Intent();
-				Bundle resultBundle = new Bundle();
+				resultIntent = new Intent();
+				resultBundle = new Bundle();
 				resultBundle.putSerializable(Task.TASK_BUNDLE_KEY, this.task);
 				resultIntent.putExtras(resultBundle);
 				setResult(ViewTaskDetailActivity.EDIT_TASK_REQUEST_CODE, resultIntent);
-				
+
 			}
 
 			// close this activity
@@ -121,6 +131,13 @@ public class ModifyTaskActivity extends GeneralActivity {
 
 	@Override
 	public void onBackPressed() {
+		// set the result for the previous activity
+		Intent resultIntent = new Intent();
+		Bundle resultBundle = new Bundle();
+		resultBundle.putSerializable(Task.TASK_BUNDLE_KEY, this.task);
+		resultIntent.putExtras(resultBundle);
+		setResult(ViewTaskDetailActivity.EDIT_TASK_REQUEST_CODE, resultIntent);
+
 		// Show the confirmation dialog
 		// The rest (leave activity or not), the function ApplicationDialogHandler.showConfirmCancelDialog() will handle
 		ConfirmCancelDialogHandler.showConfirmCancelDialog(this);
