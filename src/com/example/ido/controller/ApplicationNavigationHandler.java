@@ -87,7 +87,7 @@ public class ApplicationNavigationHandler {
 		// put the bundle into intent
 		editExistingTaskIntent.putExtras(editExistingTaskBundle);
 		// start the activity
-		sourceActivity.startActivity(editExistingTaskIntent);
+		sourceActivity.startActivityForResult(editExistingTaskIntent, ViewTaskDetailActivity.EDIT_TASK_REQUEST_CODE);
 	}
 	
 	// Go to ModifyTaskActivity to add new task

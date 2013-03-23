@@ -11,6 +11,7 @@ import com.example.ido.model.Task;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -20,6 +21,9 @@ public class ViewTaskDetailActivity extends GeneralActivity {
 	// The task object that this activity is going to display
 	// It's retrieved from bundle in onCreate()
 	private Task task;
+	
+	// Request code when user select edit
+	public static final int EDIT_TASK_REQUEST_CODE = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +118,17 @@ public class ViewTaskDetailActivity extends GeneralActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.view_task_detail, menu);
 		return true;
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		if(requestCode == EDIT_TASK_REQUEST_CODE){
+			this.task = (Task) data.getExtras().getSerializable(Task.TASK_BUNDLE_KEY);
+			this.putDataToView();
+		}
 	}
 
 	@Override

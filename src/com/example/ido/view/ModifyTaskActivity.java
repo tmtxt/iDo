@@ -99,6 +99,14 @@ public class ModifyTaskActivity extends GeneralActivity {
 			} else {
 				// edit the current task
 				editExistingTask();
+				
+				// set the result for the previous activity
+				Intent resultIntent = new Intent();
+				Bundle resultBundle = new Bundle();
+				resultBundle.putSerializable(Task.TASK_BUNDLE_KEY, this.task);
+				resultIntent.putExtras(resultBundle);
+				setResult(ViewTaskDetailActivity.EDIT_TASK_REQUEST_CODE, resultIntent);
+				
 			}
 
 			// close this activity
