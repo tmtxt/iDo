@@ -7,6 +7,8 @@ import com.example.ido.R;
 import com.example.ido.R.layout;
 import com.example.ido.R.menu;
 import com.example.ido.controller.ApplicationNavigationHandler;
+import com.example.ido.controller.ConfirmDeletionDialog;
+import com.example.ido.model.DatabaseAdapter;
 import com.example.ido.model.Task;
 
 import android.os.Bundle;
@@ -21,14 +23,21 @@ public class ViewTaskDetailActivity extends GeneralActivity {
 	// The task object that this activity is going to display
 	// It's retrieved from bundle in onCreate()
 	private Task task;
-	
+
 	// Request code when user select edit
 	public static final int EDIT_TASK_REQUEST_CODE = 1;
+
+	// Database Adapter for interacting with database
+	private DatabaseAdapter databaseAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_task_detail);
+
+		// Open the connection to database
+		databaseAdapter = new DatabaseAdapter(this);
+		databaseAdapter.open();
 
 		// Retrieve the task object from the bundle
 		Bundle taskDetailBundle = this.getIntent().getExtras();
@@ -124,7 +133,7 @@ public class ViewTaskDetailActivity extends GeneralActivity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
-		
+
 		if(requestCode == EDIT_TASK_REQUEST_CODE){
 			this.task = (Task) data.getExtras().getSerializable(Task.TASK_BUNDLE_KEY);
 			this.putDataToView();
@@ -137,6 +146,8 @@ public class ViewTaskDetailActivity extends GeneralActivity {
 		case R.id.activity_view_task_detail_Menu_actionbar_Item_edit:
 			ApplicationNavigationHandler.editExistingTask(this, this.task);
 			return true;
+		case R.id.activity_view_task_detail_Menu_actionbar_Item_delete:
+			ConfirmDeletionDialog.showConfirmDeleteDialogForTask(this, this.task, this.databaseAdapter);
 		default:
 			return super.onOptionsItemSelected(item);
 		}
