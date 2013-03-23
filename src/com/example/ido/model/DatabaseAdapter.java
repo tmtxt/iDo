@@ -204,7 +204,14 @@ public class DatabaseAdapter {
 				TASK_TABLE_COLUMN_ID + " = '" + taskId + "'", null, null, null, null);
 	}
 	
-	// insert all collaborators of a given task
+	// Find all collaborators of a given task
+	public Cursor getCollaboratorsByTaskId(String taskId){
+		return sqLiteDatabase.query(COLLABORATOR_TABLE_NAME,
+				new String[] {COLLABORATOR_TABLE_COLUMN_ID, COLLABORATOR_TABLE_COLUMN_EMAIL, COLLABORATOR_TABLE_COLUMN_TASK_ID},
+				COLLABORATOR_TABLE_COLUMN_TASK_ID + " = '" + taskId + "'", null, null, null, null);
+	}
+	
+	// Insert all collaborators of a given task
 	public void insertCollaborators(Task task){
 		for (String email : task.getCollaborators()){
 			ContentValues initialValues = new ContentValues();

@@ -24,7 +24,6 @@
                 android:id="@+id/activity_view_task_detail_TextView_task_title_content"
                 android:gravity="right"
                 android:padding="3dip"
-                android:text="The title of the task"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
 

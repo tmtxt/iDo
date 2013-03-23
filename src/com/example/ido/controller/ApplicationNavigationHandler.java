@@ -35,8 +35,15 @@ public class ApplicationNavigationHandler {
 	}
 	
 	// Go to ViewTaskDetailActivity
-	public static void viewTaskDetail(Activity sourceActivity){
+	public static void viewTaskDetail(Activity sourceActivity, Task task){
+		// create new intent
 		Intent viewTaskDetailIntent = new Intent(sourceActivity, ViewTaskDetailActivity.class);
+		// put the Task object into the bundle
+		Bundle viewTaskDetailBundle = new Bundle();
+		viewTaskDetailBundle.putSerializable(Task.TASK_BUNDLE_KEY, task);
+		// put the bundle into the intent
+		viewTaskDetailIntent.putExtras(viewTaskDetailBundle);
+		// start the activity
 		sourceActivity.startActivity(viewTaskDetailIntent);
 	}
 	
@@ -93,7 +100,7 @@ public class ApplicationNavigationHandler {
 		sourceActivity.startActivity(editExistingTaskIntent);
 	}
 	
-	// Go to ModifyTaskActivity
+	// Go to ModifyTaskActivity to add new task
 	public static void addNewTask(Activity sourceActivity, DatabaseAdapter databaseAdapter){
 		// Get all groups from database
 		Cursor allGroupsCursor = databaseAdapter.getAllGroups();

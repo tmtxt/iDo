@@ -1,11 +1,16 @@
 package com.example.ido.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.ido.R;
 import com.example.ido.R.id;
 import com.example.ido.R.layout;
 import com.example.ido.R.menu;
 import com.example.ido.controller.ApplicationNavigationHandler;
 import com.example.ido.model.DatabaseAdapter;
+import com.example.ido.model.Group;
+import com.example.ido.model.Task;
 
 import android.os.Bundle;
 import android.app.ActionBar;
@@ -84,7 +89,63 @@ public class ViewAllTasksActivity extends GeneralActivity {
 
 	// Handle the item clicked event of allTasksListView
 	private void allTaskListViewItemClickHandler(AdapterView<?> adapterView, View listView, int selectedItemId){
-		ApplicationNavigationHandler.viewTaskDetail(this);
+		// Create a new Task object and init the data
+		// After that pass it to the next activity to display detail
+		Task selectedTask = new Task();
+		// move the cursor to the right position
+		allTasksCursor.moveToFirst();
+		allTasksCursor.move(selectedItemId);
+		// set the data for selectedTask
+		// set id
+		selectedTask.setId(allTasksCursor.getString(allTasksCursor.getColumnIndex(DatabaseAdapter.TASK_TABLE_COLUMN_ID)));
+		// set title
+		selectedTask.setTitle(allTasksCursor.getString(allTasksCursor.getColumnIndex(DatabaseAdapter.TASK_TABLE_COLUMN_TITLE)));
+		// set due date
+		selectedTask.getDueDate().setTimeInMillis(allTasksCursor.getLong(allTasksCursor.getColumnIndex(DatabaseAdapter.TASK_TABLE_COLUMN_DUE_DATE)));
+		// set note
+		selectedTask.setNote(allTasksCursor.getString(allTasksCursor.getColumnIndex(DatabaseAdapter.TASK_TABLE_COLUMN_NOTE)));
+		// set priority level
+		selectedTask.setPriorityLevel(allTasksCursor.getInt(allTasksCursor.getColumnIndex(DatabaseAdapter.TASK_TABLE_COLUMN_PRIORITY)));
+		// set completion status
+		selectedTask.setCompletionStatus(allTasksCursor.getInt(allTasksCursor.getColumnIndex(DatabaseAdapter.TASK_TABLE_COLUMN_COMPLETION_STATUS)));
+		// set the group
+		selectedTask.setGroup(this.getGroupByTask(allTasksCursor.getString(allTasksCursor.getColumnIndex(DatabaseAdapter.TASK_TABLE_COLUMN_GROUP))));
+		// set the collaborators
+		selectedTask.setCollaborators(this.getCollaboratorsListByTaskId(allTasksCursor.getString(allTasksCursor.getColumnIndex(DatabaseAdapter.TASK_TABLE_COLUMN_ID))));
+		
+		// start the activity
+		ApplicationNavigationHandler.viewTaskDetail(this, selectedTask);
+	}
+	
+	// Get the collaborators list of the input task ID
+	private List<String> getCollaboratorsListByTaskId(String taskId){
+		List<String> collaboratorsList = new ArrayList<String>();
+		
+		// retrieve all collaborators of this task id
+		Cursor collaboratorsCursor = databaseAdapter.getCollaboratorsByTaskId(taskId);
+		startManagingCursor(collaboratorsCursor);
+		// iterate through the cursor and add email to the list
+		collaboratorsCursor.moveToFirst();
+		while(!collaboratorsCursor.isAfterLast()){
+			String currentCollaboratorEmail = collaboratorsCursor.getString(collaboratorsCursor.getColumnIndex(DatabaseAdapter.COLLABORATOR_TABLE_COLUMN_EMAIL));
+			collaboratorsList.add(currentCollaboratorEmail);
+			collaboratorsCursor.moveToNext();
+		}
+		
+		return collaboratorsList;
+	}
+	
+	// Get the group by the input Id
+	private Group getGroupByTask(String groupId){
+		Group group = new Group();
+		
+		// query from database
+		Cursor groupCursor = this.databaseAdapter.getGroupById(groupId);
+		groupCursor.moveToFirst();
+		group.setId(groupCursor.getString(groupCursor.getColumnIndex(DatabaseAdapter.GROUP_TABLE_COLUMN_ID)));
+		group.setTitle(groupCursor.getString(groupCursor.getColumnIndex(DatabaseAdapter.GROUP_TABLE_COULMN_TITLE)));
+		
+		return group;
 	}
 
 	@Override
