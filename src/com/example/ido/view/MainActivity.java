@@ -20,17 +20,6 @@ import android.widget.ListView;
 
 public class MainActivity extends Activity {
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()){
-		case R.id.action_settings:
-			// click on setting button wil navigate to SettingActivity
-			ApplicationNavigationHandler.showSetting(this);
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-	}
-
 	private ListView mainListView;
 
 	@Override
