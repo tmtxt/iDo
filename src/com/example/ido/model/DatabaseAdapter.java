@@ -236,7 +236,16 @@ public class DatabaseAdapter {
 		sqLiteDatabase.update(TASK_TABLE_NAME, updateValues, TASK_TABLE_COLUMN_ID + " = '" + task.getId() + "'", null);
 		
 		// Update Collaborator table
-		
+	}
+	
+	// delete the selected Task
+	public void deleteTask(Task task){
+		deleteTask(task.getId());
+	}
+	
+	// delete the selected Task
+	public void deleteTask(String taskId){
+		sqLiteDatabase.delete(TASK_TABLE_NAME, TASK_TABLE_COLUMN_ID + " = '" + taskId + "'", null);
 	}
 	
 	// Return a new randomly generated task id
