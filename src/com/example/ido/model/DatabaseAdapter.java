@@ -221,6 +221,24 @@ public class DatabaseAdapter {
 		}
 	}
 	
+	// Edit an existing task
+	public void editExistingTask(Task task){
+		ContentValues updateValues;
+		
+		// Update Task table first
+		updateValues = new ContentValues();
+		updateValues.put(TASK_TABLE_COLUMN_TITLE, task.getTitle());
+		updateValues.put(TASK_TABLE_COLUMN_NOTE, task.getNote());
+		updateValues.put(TASK_TABLE_COLUMN_DUE_DATE, task.getDueDate().getTimeInMillis());
+		updateValues.put(TASK_TABLE_COLUMN_PRIORITY, task.getPriorityLevel());
+		updateValues.put(TASK_TABLE_COLUMN_GROUP, task.getGroup().getId());
+		updateValues.put(TASK_TABLE_COLUMN_COMPLETION_STATUS, task.getCompletionStatus());
+		sqLiteDatabase.update(TASK_TABLE_NAME, updateValues, TASK_TABLE_COLUMN_ID + " = '" + task.getId() + "'", null);
+		
+		// Update Collaborator table
+		
+	}
+	
 	// Return a new randomly generated task id
 	public String getNewTaskId(){
 		String uuid = null;

@@ -79,21 +79,11 @@ public class ApplicationNavigationHandler {
 	
 	// Go to ModifyTaskActivity to edit and existing Task
 	public static void editExistingTask(Activity sourceActivity, Task existingTask){
-		// create a skeleton
-		Calendar date = Calendar.getInstance();
-		date.set(Calendar.YEAR, 1992);
-		List<String> collaborators = new ArrayList<String>();
-		collaborators.add("truong.tx@facebook.com");
-		collaborators.add("tommy.txtruong@gmail.com");
-		collaborators.add("s3393320@rmit.edu.vn");
-		Group group = new Group("98b7ae74-ea0d-4dd2-86ba-c6df4fdf62e6", "To do this week", null);
-		Task task = new Task("taskID", "Go shopping", date, "This is something I need to do in this week", Task.HIGH_PRIORITY, collaborators, group, Task.TASK_NOT_COMPLETED);
-		
 		Intent editExistingTaskIntent = new Intent(sourceActivity, ModifyTaskActivity.class);
 		// put the task to edit into the bundle
 		Bundle editExistingTaskBundle = new Bundle();
 		// editExistingTaskBundle.putSerializable(Task.TASK_BUNDLE_KEY, existingTask);
-		editExistingTaskBundle.putSerializable(Task.TASK_BUNDLE_KEY, task);
+		editExistingTaskBundle.putSerializable(Task.TASK_BUNDLE_KEY, existingTask);
 		// put the bundle into intent
 		editExistingTaskIntent.putExtras(editExistingTaskBundle);
 		// start the activity

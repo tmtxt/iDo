@@ -87,18 +87,25 @@ public class ModifyTaskActivity extends GeneralActivity {
 			// The rest (leave activity or not), the function ApplicationDialogHandler.showConfirmCancelDialog() will handle
 			ConfirmCancelDialogHandler.showConfirmCancelDialog(this);
 			return true;
-			
-		// When user select Save
+
+			// When user select Save
 		case R.id.activity_modify_task_Menu_actionbar_Item_save:
 			// validate form
-			
-			// add new task to database
-			addNewTask();
+
+			// check whether the current job is add new or edit
+			if(this.currentJob == CURRENT_JOB_ADD){
+				// add new task to database
+				addNewTask();
+			} else {
+				// edit the current task
+				editExistingTask();
+			}
+
 			// close this activity
 			finish();
 			return true;
-		
-		// default case, return the base class function
+
+			// default case, return the base class function
 		default:
 			return super.onOptionsItemSelected(item);
 		}
@@ -181,14 +188,19 @@ public class ModifyTaskActivity extends GeneralActivity {
 
 
 	// UTILITY FUNCTIONS
-	
-	// THis function is used to add new task to database
-	private void addNewTask(){
+
+	// This function is used to edit the current task
+	private void editExistingTask(){
+		// Load data from form to this.task object
+		updateTaskObject();
+		// Call the database adapter to update the task
+		databaseAdapter.editExistingTask(this.task);
+	}
+
+	// This function is used to retrieve data from form and update the this.task object
+	private void updateTaskObject(){
 		// Retrieve data from form and put into this.task object
 		// No need to set collaborators since the list view handles it automatically
-		// set task id
-		String taskId = databaseAdapter.getNewTaskId();
-		this.task.setId(taskId);
 		// set task title
 		String taskTitle = ((EditText)findViewById(R.id.activity_modify_task_Edittext_task_title)).getText().toString();
 		this.task.setTitle(taskTitle);
@@ -209,6 +221,18 @@ public class ModifyTaskActivity extends GeneralActivity {
 		// set group
 		Spinner groupSpinner = (Spinner) findViewById(R.id.activity_modify_task_Spinner_group);
 		this.task.getGroup().setId(getGroupIdByPosition(allGroupsCursor, groupSpinner.getSelectedItemPosition()));
+	}
+
+	// This function is used to add new task to database
+	private void addNewTask(){
+		// Load data from form to this.task object
+		updateTaskObject();
+		// Since we add new task, need to get a new task id
+		// set task id
+		String taskId = databaseAdapter.getNewTaskId();
+		this.task.setId(taskId);
+
+		// Call the database adapter to add new task
 		this.databaseAdapter.insertTask(this.task);
 	}
 
@@ -345,7 +369,7 @@ public class ModifyTaskActivity extends GeneralActivity {
 			completionStatusSpinner.setSelection(this.task.getCompletionStatus());
 		}
 	}
-	
+
 	// get the id of the group with the input position
 	private String getGroupIdByPosition(Cursor cursor, int position){
 		String groupId = null;
