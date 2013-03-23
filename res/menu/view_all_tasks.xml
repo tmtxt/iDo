@@ -6,10 +6,6 @@
         android:icon="@android:drawable/ic_menu_add"
         android:showAsAction="always"
         android:title="@string/activity_view_all_tasks_Menu_actionbar_Item_add_String_title"/>
-    <item
-        android:id="@+id/activity_view_all_tasks_Menu_actionbar_Item_manage_task"
-        android:icon="@android:drawable/ic_menu_edit"
-        android:showAsAction="always"
-        android:title="@string/activity_view_all_tasks_Menu_actionbar_Item_manage_String_title"/>
+
 
 </menu>
